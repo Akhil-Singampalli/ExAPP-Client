@@ -1,7 +1,7 @@
 .App-background {
   background-image: url('./images//Healthcare-1-1920x1080.jpg');
   min-height: 120vh;
-  color: white;
+  color: rgb(0, 0, 0);
   
 }
 
@@ -23,7 +23,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .App-link {

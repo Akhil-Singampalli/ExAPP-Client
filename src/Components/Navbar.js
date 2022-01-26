@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useState } from "react";
+
 import "../index.css";
 import "../css/css/menu.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
@@ -10,8 +10,13 @@ import * as ImIcons from "react-icons/im";
 import Login from "../Components/Login"
 import Register from "../Components/Register";
 import Home from "../Components/Home";
-import { MenuData } from "./MenuData";
+import { MenuData, MenuDataAdmin, MenuDataDoc } from "./MenuData";
 import Appointment from "./Appointment";
+import Details from "./Details";
+import AdminPatientPageEdit from "./AdminPatientPageEdit";
+import PatientDetails from "./PatientDetails";
+import DocAddPatDetails from "./DocAddPatDetails";
+import DocUpdatePatData from "./DocUpdatePatData";
 
 
 
@@ -56,13 +61,13 @@ class NavBar extends Component {
             <div className="App-background">
                 <Router>
 
-                    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-                    {this.state.logged_userId ? (
-                        <button className="menu-bars" onClick={this.showSidebar}><ImIcons.ImMenu /></button>
+                    <nav class="navbar navbar-expand-md navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+                        {true ? (
+                            <button className="menu-bars" onClick={this.showSidebar}><ImIcons.ImMenu /></button>
                         ) : null}
-                    
+
                         <div class="container">
-                        
+
                             <a class="navbar-brand" href="index.html"><b>e</b>-xult</a>
 
                             <div class="collapse navbar-collapse" id="ftco-nav">
@@ -88,16 +93,16 @@ class NavBar extends Component {
                                 </ul>
                             </div>
                         </div>
-                        
+
                     </nav>
 
-                    {this.state.sideNav ?
+                    {this.state.sideNav && false ?
                         <div>
-                           
-                            <nav className={this.state.sideNav ? 'nav-menu active navbar-m' : 'nav-menu navbar-m'}>
-                            
+
+                            <nav className={this.state.sideNav ? 'nav-menu active' : 'nav-menu navbar-m'}>
+
                                 <ul className='nav-menu-item'>
-                                    
+
                                     {MenuData.map((item, index) => {
                                         return (
                                             <li key={index} className={item.cName}>
@@ -113,7 +118,54 @@ class NavBar extends Component {
                             </nav>
                         </div>
                         : null}
- 
+
+                    {this.state.sideNav && false ?
+                        <div>
+
+                            <nav className={this.state.sideNav ? 'nav-menu active ' : 'nav-menu navbar-m'}>
+
+                                <ul className='nav-menu-item'>
+
+                                    {MenuDataAdmin.map((item, index) => {
+                                        return (
+                                            <li key={index} className={item.cName}>
+                                                <Link to={item.path} className="">
+                                                    {item.icon}
+                                                    <span><h6>{item.title}</h6></span>
+                                                </Link>
+                                            </li>
+                                        )
+                                    })}
+                                </ul>
+
+                            </nav>
+                        </div>
+                        : null}
+                         {this.state.sideNav && true ?
+                        <div>
+
+                            <nav className={this.state.sideNav ? 'nav-menu active ' : 'nav-menu navbar-m'}>
+
+                                <ul className='nav-menu-item'>
+
+                                    {MenuDataDoc.map((item, index) => {
+                                        return (
+                                            <li key={index} className={item.cName}>
+                                                <Link to={item.path} className="">
+                                                    {item.icon}
+                                                    <span><h6>{item.title}</h6></span>
+                                                </Link>
+                                            </li>
+                                        )
+                                    })}
+                                </ul>
+
+                            </nav>
+                        </div>
+                        : null}
+
+
+
 
                     <div>
 
@@ -122,6 +174,9 @@ class NavBar extends Component {
                             <Route exact path="/Login" component={Login}></Route>
                             <Route path="/register" component={Register}></Route>
                             <Route path="/appointment" component={Appointment}></Route>
+                            <Route path="/details" component={PatientDetails}></Route>
+                            <Route path="/patientPageEdit" component={AdminPatientPageEdit}></Route>
+                            <Route path="/addPatDetails" component={DocUpdatePatData}></Route>
                         </Switch>
 
                     </div>

@@ -19,8 +19,8 @@
 
 .nav-menu {
     background-color: rgb(9, 74, 121);
-    width: 250px;
-    
+    width: 225px;
+    padding: 0mm;
     justify-content: center;
     position: absolute;
     top:0;
@@ -32,12 +32,13 @@
     transition: 350ms;
     margin-top: 70px;
     min-height: 110vh;
+    padding: 0px;
 }
 
 .nav-text {
     justify-content: start;
     align-items: center;
-    padding: 8px 0px 8px 0px;
+    padding: 5px 0px 8px 0px;
     list-style: none;
     height: 100%;
     border-color: white;
@@ -65,6 +66,7 @@
     width:100%;
     align-items: flex-start;
     border: white;
+    padding: 0mm;
 }
 
 span {

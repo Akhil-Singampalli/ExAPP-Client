@@ -5,6 +5,12 @@ import * as AiIcons from "react-icons/ai";
 
 export const MenuData = [
     {
+        title: 'Details',
+        path: '/details',
+        icon:<AiIcons.AiOutlineReconciliation/>,
+        cName: "nav-text",
+    },
+    {
         title: 'Consultations',
         path: '/',
         icon:<AiIcons.AiOutlineReconciliation/>,
@@ -28,4 +34,29 @@ export const MenuData = [
         icon:<MdIcons.MdOutlinePhotoSizeSelectActual/>,
         cName: "nav-text",
     },
+]
+
+export const MenuDataAdmin = [
+
+    {
+        title: 'Edit Patient Details Page',
+        path: '/patientPageEdit',
+        icon:<AiIcons.AiOutlineReconciliation/>,
+        cName: "nav-text",
+    },
+    {
+        title: 'Add Doctor',
+        path: '/',
+        icon:<AiIcons.AiOutlineReconciliation/>,
+        cName: "nav-text",
+    },
+]
+
+export const MenuDataDoc = [
+    {
+        title: 'Add Patient Details',
+        path: '/addPatDetails',
+        icon:<AiIcons.AiOutlineReconciliation/>,
+        cName: "nav-text",
+    }
 ]

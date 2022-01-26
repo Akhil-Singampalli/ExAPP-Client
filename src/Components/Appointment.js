@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 
 class Appointment extends Component {
@@ -170,6 +172,13 @@ class Appointment extends Component {
                                             </select>
                                         </div>
                                     </div>
+                                    <div className="form-control">
+                                                            <div className="select-wrap">
+                                                                <label ><span><h6>Choose Field Type</h6></span></label>
+                                                                <Dropdown options={this.state.doctorsData.doctorName} onChange={this._onSelect} value={this.state.doctorsData.doctorName[0]} placeholder="Select Field Type" />
+                                                            </div>
+
+                                                        </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
