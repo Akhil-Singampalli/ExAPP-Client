@@ -2,21 +2,25 @@
 export var PatientData = [
     {
        
+        fieldId:'1',
         fieldName: 'Name',
         fieldValue: 'Akhil',
         fieldType: 'text'
     },
     {
+        fieldId:'2',
         fieldName: 'Age',
         fieldValue: '24',
         fieldType: 'number'
     },
     {
+        fieldId:'3',
         fieldName: 'Gender',
         fieldValue: 'M',
         fieldType: 'text'
     },
     {
+        fieldId:'4',
         fieldName: 'Reason',
         fieldValue: 'Hair',
         fieldType: 'text'

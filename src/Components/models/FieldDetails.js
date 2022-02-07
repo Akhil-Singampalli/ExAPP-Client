@@ -1,4 +1,5 @@
 export class Field {
+    FieldId;
     FieldType ;
     FieldValue;
     FieldName;

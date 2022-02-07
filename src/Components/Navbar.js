@@ -33,6 +33,9 @@ class NavBar extends Component {
         };
     }
 
+    componentDidMount(){
+        this.setState({ sideNav : true });
+    }
     onClick = () => {
         this.setState({ dialog_visible: true });
     }
@@ -68,7 +71,7 @@ class NavBar extends Component {
 
                         <div class="container">
 
-                            <a class="navbar-brand" href="index.html"><b>e</b>-xult</a>
+                            <a class="navbar-brand" href="/"><b>e</b>-xult</a>
 
                             <div class="collapse navbar-collapse" id="ftco-nav">
                                 <ul class="navbar-nav ml-auto">
@@ -174,7 +177,7 @@ class NavBar extends Component {
                             <Route exact path="/Login" component={Login}></Route>
                             <Route path="/register" component={Register}></Route>
                             <Route path="/appointment" component={Appointment}></Route>
-                            <Route path="/details" component={PatientDetails}></Route>
+                            <Route path="/details/:patientId" component={PatientDetails}></Route>
                             <Route path="/patientPageEdit" component={AdminPatientPageEdit}></Route>
                             <Route path="/addPatDetails" component={DocUpdatePatData}></Route>
                         </Switch>

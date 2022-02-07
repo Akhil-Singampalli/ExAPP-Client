@@ -181,7 +181,8 @@ svg:not(:root) {
   overflow: hidden; }
 
 table {
-  border-collapse: collapse; }
+  border-collapse: collapse;
+  width: 800px; }
 
 caption {
   padding-top: 0.75rem;
@@ -3793,7 +3794,7 @@ input[type="button"].btn-block {
   width: fit-content;
   height: fit-content;
   word-wrap: break-word;
-  background-color: rgba(300, 300, 300, 0.763);
+  background-color: rgba(300, 300, 300, 0.84);
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem; 
@@ -9448,7 +9449,7 @@ textarea.form-control {
     font-style: italic; }
 
     .body-page {
-      position: -ms-page;
+      position: relative;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -9459,16 +9460,16 @@ textarea.form-control {
       -webkit-box-direction: normal;
       -ms-flex-direction: column;
       flex-direction: column;
-      min-width: 800px;
-      margin-top: 35px;
-      margin-bottom: 5px;
+      min-width: auto;
+      margin-top: auto;
+      margin-bottom: auto;
       width: var(--breakpoint-xl);
       height: var(--breakpoint-lg);
       word-wrap: break-word;
       background-color: rgba(300, 300, 300, 0.763);
       background-clip: border-box;
       border: 1px solid rgba(0, 0, 0, 0.125);
-      border-radius: 0.25rem; 
+      border-radius: 0.3rem; 
     }
 
 #ftco-loader {
