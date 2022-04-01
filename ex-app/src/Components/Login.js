@@ -54,7 +54,10 @@ class Login extends Component {
         })
         sessionStorage.setItem("userName",response.data.userName);
         sessionStorage.setItem("userId",response.data.userId);
+        sessionStorage.setItem("contactNumber",response.data.contactNumber);
+        sessionStorage.setItem("emailId",response.data.emailId);
         window.location.reload();
+       
     }).catch(error=>{
             if(error.response) {
                 this.setState({ errorMessage : error.response.data.message ,successMessage : "" });
@@ -108,31 +111,16 @@ class Login extends Component {
                     formvalid.contactNumber = true;
                 }
                 break;
-            case "password":
-                if (value === "") {
-                    validationerrorMessage.password = "Enter the field";
-                    formvalid.password = false;
-                }
-                else if (!value.match(/^[A-Z]+$/) && !value.match(/^.[a-z].$/) && !value.match(/^.[0-9].$/) && value.length<8) {
-
-                    validationerrorMessage.password = "Password Should contain atleast 1 upper case,1 lower case,1 number and minimum 8 characters";
-                        formvalid.password = false;
-                }
-                else {
-                    validationerrorMessage.password = "";
-                    formvalid.password = true;
-                }
-                break;
         }
     };
 
     render() {
-        if (this.state.register == true) return <Redirect to={"/register"} />;
+        if (this.state.register == true) return <Redirect to={"/Register"} />;
         else if (this.state.login == true || this.state.cancel == true) return <Redirect to={"/"} />;
         return (
             <div>
                 <div className="App-header" >
-                    <section className="card" >
+                    <section className='card container-fluid' style={{ marginTop: "70px" }}>
                         <form className="form-control card-body" >
                         <div className="text-center card-header">
                                     <h2><b>LOGIN</b></h2>
@@ -184,8 +172,8 @@ class Login extends Component {
                                 <div className="col" >
                                     <div className="form-inline row">
                                         <button
-                                            type=
-                                            "submit" name="login"
+                                            type="submit" 
+                                            name="login"
                                             className=" btn  btn-success"
                                             onClick={this.handleSubmit}
                                         >

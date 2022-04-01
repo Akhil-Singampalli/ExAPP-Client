@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PatientData } from './PatientData';
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+
 
 export default class Details extends Component {
 
@@ -9,7 +9,7 @@ export default class Details extends Component {
             <div className="App-header"  >
                 <div >
                     <br></br>
-                    <div className="body-page">
+                    <div className='card container-fluid' style={{ marginTop: "70px" }}>
                         <div className=''>
                             <div className={true ? 'card card-body' : 'nav-menu navbar-m'}>
 

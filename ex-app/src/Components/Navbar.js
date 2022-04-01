@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import "../index.css";
+
 import "../css/css/menu.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
@@ -10,13 +11,20 @@ import * as ImIcons from "react-icons/im";
 import Login from "../Components/Login"
 import Register from "../Components/Register";
 import Home from "../Components/Home";
-import { MenuData, MenuDataAdmin, MenuDataDoc } from "./MenuData";
+import { MenuData, MenuDataAdmin, MenuDataDoc } from "../utils/MenuData";
 import Appointment from "./Appointment";
-import Details from "./Details";
 import AdminPatientPageEdit from "./AdminPatientPageEdit";
 import PatientDetails from "./PatientDetails";
-import DocAddPatDetails from "./DocAddPatDetails";
 import DocUpdatePatData from "./DocUpdatePatData";
+
+import ViewAppointments from "./ViewAppointments";
+import AdminAddDoctor from "./AdminAddDoctor";
+import AdminAddPatsBulk from "./AdminAddPatsBulk";
+import { Redirect } from "react-router-dom";
+import AdminPatientDetailsEdit from "./AdminPatientDetailsEdit";
+import Calendar from "./Calendar";
+
+
 
 
 
@@ -33,8 +41,12 @@ class NavBar extends Component {
         };
     }
 
-    componentDidMount(){
-        this.setState({ sideNav : true });
+  
+
+    componentDidMount() {
+        this.setState({ sideNav: false });
+        
+        
     }
     onClick = () => {
         this.setState({ dialog_visible: true });
@@ -49,69 +61,85 @@ class NavBar extends Component {
         sessionStorage.clear();
         this.setState({ logged_out: true });
         window.location.reload();
+        <Redirect to="/" ></Redirect>
     };
 
     confirm_logout = () => {
         this.setState({ dialog_visible: true })
+        
     };
 
-    showSidebar = () => {
+    toggleSidebar = () => {
         this.setState({ sideNav: !this.state.sideNav });
     }
+
+
     render() {
         return (
 
             <div className="App-background">
+                
                 <Router>
+                
+                {!this.state.logged_out ? <Redirect to="/" ></Redirect> : null }
 
-                    <nav class="navbar navbar-expand-md navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-                        {true ? (
-                            <button className="menu-bars" onClick={this.showSidebar}><ImIcons.ImMenu /></button>
+                    <nav className="navbar navbar-expand-md navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+                        {this.state.logged_userId ? (
+                            <button className="menu-bars" onClick={this.toggleSidebar}><ImIcons.ImMenu /></button>
                         ) : null}
 
-                        <div class="container">
+                        <div className="container">
 
-                            <a class="navbar-brand" href="/"><b>e</b>-xult</a>
+                            <a className="navbar-brand" href="/"><b>e</b>-xult</a>
 
-                            <div class="collapse navbar-collapse" id="ftco-nav">
-                                <ul class="navbar-nav ml-auto">
+                            <div className="collapse navbar-collapse" id="ftco-nav">
+                                <ul className="navbar-nav ml-auto row" >
                                     <li className="nav-item active cta"><Link className="nav-link" to="/">Home</Link></li>
                                     <li className="nav-item cta"><a href="about.html" className="nav-link">About</a></li>
                                     <li className="nav-item cta"><a href="services.html" className="nav-link">Services</a></li>
                                     <li className="nav-item cta"><a href="doctors.html" className="nav-link">Doctors</a></li>
                                     <li className="nav-item cta"><a href="blog.html" className="nav-link">Blog</a></li>
                                     <li className="nav-item cta"><a href="contact.html" className="nav-link">Contact</a></li>
-                                    <li className="nav-item cta"><Link href="contact.html" className="nav-link" to="/appointment"><span>Make an Appointment</span></Link></li>
+                                    <li className="nav-item cta"><Link href="contact.html" className="nav-link" to="/appointment">Book Appointment</Link></li>
                                     {!this.state.logged_userId ? (
                                         <li className="nav-item cta"><Link className="nav-link" to="/Login"><b>Log In</b></Link></li>
                                     ) : null}
 
                                     {this.state.logged_userId ? (
-                                        <li className="nav-item cta"><Link className="nav-link" onClick={this.logout} to="/"><b>Log out</b></Link></li>
+                                        <li className="nav-item cta"><Link className="nav-link" onClick={ this.logout} to="/"><b >Log out</b></Link></li>
                                     ) : null}
 
                                     {this.state.logged_userId ? (
-                                        <li className="nav-item cta"><Link className="nav-link" to="">Welcome {this.state.logged_userName}</Link></li>
+
+                                        <li className="nav-item cta">
+
+                                            <button className="menu-bars" style={{ marginTop: "0.5rem" }} onClick={this.logout}><ImIcons.ImUser /></button>
+                                        </li>
+
+
                                     ) : null}
+
+
                                 </ul>
                             </div>
                         </div>
 
                     </nav>
 
-                    {this.state.sideNav && false ?
+                    {this.state.sideNav && this.state.logged_userId > 10 ?
                         <div>
 
-                            <nav className={this.state.sideNav ? 'nav-menu active' : 'nav-menu navbar-m'}>
 
-                                <ul className='nav-menu-item'>
+                            <nav className={this.state.sideNav ? 'nav-menu active' : 'nav-menu navbar-m'} style={{position:"relative" , float : 'left', height: "100%"}}>
+
+                                <ul className='nav-item form-control'>
 
                                     {MenuData.map((item, index) => {
                                         return (
                                             <li key={index} className={item.cName}>
-                                                <Link to={item.path} className="">
+                                                <Link to={item.path} onClick={this.toggleSidebar} className={item.cName}>
                                                     {item.icon}
-                                                    <span><h6>{item.title}</h6></span>
+                                                    <span>{item.title}</span>
                                                 </Link>
                                             </li>
                                         )
@@ -122,19 +150,41 @@ class NavBar extends Component {
                         </div>
                         : null}
 
-                    {this.state.sideNav && false ?
+
+                    {this.state.sideNav && this.state.logged_userId < 10 && this.state.logged_userId > 1 ?
                         <div>
 
-                            <nav className={this.state.sideNav ? 'nav-menu active ' : 'nav-menu navbar-m'}>
+                            <nav className={this.state.sideNav ? 'nav-menu active' : 'nav-menu navbar-m'} style={{position:"relative" , float : 'left'}}>
 
-                                <ul className='nav-menu-item'>
+                                <ul className='nav-item form-control'>
+
+                                    {MenuDataDoc.map((item, index) => {
+                                        return (
+                                            <li key={index} onClick={this.toggleSidebar} className={item.cName}>
+                                                <Link to={item.path} className="">
+                                                    {item.icon}<span>{item.title}</span>
+                                                </Link>
+                                            </li>
+                                        )
+                                    })}
+                                </ul>
+
+                            </nav>
+                        </div>
+                        : null}
+
+                    {this.state.sideNav && (this.state.logged_userId === "1")?
+                        <div>
+
+                            <nav className={this.state.sideNav ? 'nav-menu active ' : 'nav-menu navbar-m'} style={{position:"relative" , float : 'left'}}>
+
+                                <ul className='nav-item form-control'>
 
                                     {MenuDataAdmin.map((item, index) => {
                                         return (
                                             <li key={index} className={item.cName}>
-                                                <Link to={item.path} className="">
-                                                    {item.icon}
-                                                    <span><h6>{item.title}</h6></span>
+                                                <Link to={item.path} onClick={this.toggleSidebar} className={item.cName}>
+                                                    {item.icon}{ item.title}
                                                 </Link>
                                             </li>
                                         )
@@ -144,31 +194,6 @@ class NavBar extends Component {
                             </nav>
                         </div>
                         : null}
-                         {this.state.sideNav && true ?
-                        <div>
-
-                            <nav className={this.state.sideNav ? 'nav-menu active ' : 'nav-menu navbar-m'}>
-
-                                <ul className='nav-menu-item'>
-
-                                    {MenuDataDoc.map((item, index) => {
-                                        return (
-                                            <li key={index} className={item.cName}>
-                                                <Link to={item.path} className="">
-                                                    {item.icon}
-                                                    <span><h6>{item.title}</h6></span>
-                                                </Link>
-                                            </li>
-                                        )
-                                    })}
-                                </ul>
-
-                            </nav>
-                        </div>
-                        : null}
-
-
-
 
                     <div>
 
@@ -177,9 +202,13 @@ class NavBar extends Component {
                             <Route exact path="/Login" component={Login}></Route>
                             <Route path="/register" component={Register}></Route>
                             <Route path="/appointment" component={Appointment}></Route>
-                            <Route path="/details/:patientId" component={PatientDetails}></Route>
-                            <Route path="/patientPageEdit" component={AdminPatientPageEdit}></Route>
+                            <Route exact path="/details/:patientId" component={PatientDetails}></Route>
+                            <Route path="/patientPageEdit" component={AdminPatientDetailsEdit}></Route>
                             <Route path="/addPatDetails" component={DocUpdatePatData}></Route>
+                            <Route path="/getApt/:userId" component={ViewAppointments}></Route>
+                            <Route path="/addDoc" component={AdminAddDoctor}></Route>
+                            <Route path="/addPats" component={AdminAddPatsBulk}></Route>
+                            <Route path="/cal" component={Calendar}></Route>
                         </Switch>
 
                     </div>

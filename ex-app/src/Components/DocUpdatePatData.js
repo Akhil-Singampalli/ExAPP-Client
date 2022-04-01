@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import ReactTable from "react-table";
+
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
-import { PatDetails } from './PatientData';
+
 import { FaArrowAltCircleDown, FaArrowDown, FaCartArrowDown, FaDocker, FaSearch, FaSortDown } from 'react-icons/fa';
-import { right } from '@popperjs/core';
-import { MdPadding } from 'react-icons/md';
+// import { right } from '@popperjs/core';
+
 import { Redirect, Link } from 'react-router-dom';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 
@@ -59,18 +59,19 @@ class DocUpdatePatData extends Component {
 
         return (
 
-            <div className='App background'>
+            <div className='App-header' >
 
-                <div className='container' >
-                    <div className='card' style={{ padding: 5 }}>
+                
+                    <div className='card container-fluid' style={{ marginTop: "75px", width : "100%" }}>
                         <label className='text-center card-header' style={{width:"100%"}}><b>Patients Details</b></label>
-                        <div className='right form form-row form-control' style={{}}>
-                            <FaSearch ></FaSearch>
+                        <div className='right form-control col-auto' style={{}}>
+                            
 
-                            <input className=' search-bar' style={{ padding: '5' ,float : "right"}} placeholder='   Search   '></input>
+                            <input className='' style={{ padding: '0.5px' ,float : "right"}} placeholder='   Search   '></input>
+                            <FaSearch className=''style={{ padding: '1px' ,float : "right",marginTop:"5px",marginRight:"5px"}}></FaSearch>
                         </div>
 
-                        <Table className='table form-control card-body '>
+                        <Table className='table form-control ' style={{width:"100%"}}>
                             <Tr>
                                 <Th className='thead th column-collapse'>.</Th>
                                 <Th className='thead th  col-3'>Patient Name</Th>
@@ -83,7 +84,7 @@ class DocUpdatePatData extends Component {
                                     <Tbody>
                                         <Tr key={key}>
                                             <Td>
-                                                <button className="br-button circle small button" type="button" data-toggle="collapse" data-target="collapse-1-4-4527"><FaSortDown></FaSortDown>
+                                                <button className="btn br-button btn-info" type="button" data-toggle="collapse" data-target="collapse-1-4-4527"><FaSortDown></FaSortDown>
                                                 </button>
                                             </Td>
 
@@ -115,7 +116,7 @@ class DocUpdatePatData extends Component {
                             </tr>
                         </Table>
                     </div>
-                </div>
+                
             </div>
 
         )

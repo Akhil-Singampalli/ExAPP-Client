@@ -5,7 +5,7 @@ export class Field {
     FieldName;
 }
 
-export const fieldType = [
+export const Type = [
     
     "Text","Number", ".pdf", "Message", ".jpeg"
    

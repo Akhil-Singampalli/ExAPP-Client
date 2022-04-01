@@ -1,9 +1,13 @@
-import axios from "axios";
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { User } from "./models/User";
+import {User} from "./models/User";
+import React, {Component} from "react";
 
-class Register extends Component {
+import axios from "axios";
+import "../index.css";
+import "../App.css";
+import { Link } from "react-router-dom";
+
+
+class AdminAddDoctor extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -40,24 +44,11 @@ class Register extends Component {
     submitRegister = () => {
 
         let userData = {
-            patientName: this.state.formvalue.fname + '' + this.state.formvalue.lname,
+            doctorName: "Dr." + this.state.formvalue.fname + '' + this.state.formvalue.lname,
             emailId: this.state.formvalue.email,
             contactNumber: this.state.formvalue.contactNumber,
             password: this.state.formvalue.password
         }
-
-        var firstname = document.getElementById("firstname").value;
-        var lastname = document.getElementById("lastname")
-        var emailId = document.getElementById("email").value;
-        var contactNumber = document.getElementById("contactNumber").value;
-        var password = document.getElementById("password").value;
-
-        var user = new User();
-
-        user.name = firstname + ' ' + lastname;
-        user.contactNumber = contactNumber;
-        user.emailId = emailId;
-        user.password = password;
 
         this.setState({ errorMessage: "", successMessage: "" });
 
@@ -65,7 +56,8 @@ class Register extends Component {
         console.log(this.state.formvalue.confirmPassword);
         if (this.state.formvalue.password === this.state.formvalue.confirmPassword) {
 
-            axios.post('http://localhost:8080/patientAPI/patientRegister', userData)
+            console.log(userData)
+            axios.post('http://localhost:8080/adminAPI/docRegister', userData)
                 .then(response => this.setState({
 
                     usersData: response.data,
@@ -207,14 +199,13 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="App-header"  >
-                <div >
-                    <br></br>
-                    <div className="card">
-                        <form className="form-control">
+            <div>
+                <div className="App-header" >
+                    <section className='card container-fluid' style={{ marginTop: "70px" }} >
+                    <form className="form-control">
                             <div className="card-body">
-                                <div className="text-center card-header">
-                                    <h2><b>Register</b></h2>
+                                <div className="form-control text-center card-header">
+                                    <h4><b>Doctor Registration</b></h4>
                                 </div>
                                 <div className="form-group form-col">
 
@@ -279,10 +270,15 @@ class Register extends Component {
                                 </Link>
                             </div>
                         </form>
-                    </div>
+                        <span className="text-center alert-success"><b>{this.state.successMessage}</b></span>
+                        <span className="text-center alert-danger"><b>{this.state.errorMessage}</b></span>
+                    </section>
+                    <section className="col"></section>
                 </div>
             </div>
-        )
+        );
     }
 }
-export default Register;
+
+
+export default AdminAddDoctor;

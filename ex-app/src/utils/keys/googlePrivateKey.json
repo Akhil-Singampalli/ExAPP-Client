@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "exultstore",
+    "private_key_id": "40e68fae0c293c7d20ba87c548c1e3e2dea42c23",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC1ihiZ3PHCOaAk\nGt1JQobSVFszqDN56tYFKqNKWQpO5wKqsLAPvI7CziseIzXjuZuW0bef2zyDPXnC\nkrysQoOE9SZJuM029FNzcvnk7swuN7qzrrCBOJBfn0gFhlabckyWHh2MReFQrvYs\nhkhKkCoNUkCd19sNDcio+HgdO/wPPGX8mx9+kR/Q9c2aXY6UK8/+Ya9y4iOc/f20\nAks5j/irtLa6pNHHjg0zz5UhKHL8r4b+XAkZwQ8D+G+GMCatpKVJe/Jvq5JlMuiH\nFPbITXsFnLmWEfJikxem8ttHERpVuzPXED00iK9AL8NMV0Zo0sIHnMogjXKdFCN6\n/4lULWRrAgMBAAECggEABPHK873h09Fv/CvDJTCrrWTgywpkxIhR5fggVHESZ83A\n89c2JGeVV9b3s61v1VED3Nq/bpoxDr4I5/TJMMPrAx8OOOnQpROIhld2WPbsFsIr\n0qMKaaqZvBEBjCz5hOhbD6eoVF6+4UyypcnOhEFi89PusJ3leHiMo5WI5/rvRZbq\ntpU5Af2o5xyRinJ7s2serodTIlUYneLaz4GyzqSHHX3PjGwvD0Unl/F7qF2TXdbd\nd2W2O2+RAz/wKkCM0OnKruspDT6PvWqtv8ERJkzOpXA8wFFUIaW9Q5ySPFT+OOvI\ny1LRwrPHKfQXEX/ys6fgKtjvwkrs5FDzbp0vECIMoQKBgQD0JaaQc6wC+6+1b6uz\nAY7bKoxO7dVyHRUyPxIlb7/+uz4XvQGBDfxPZs/M8YGaPU6eNzulKxiijwptrf5n\nBw66hHXWnpH4iZ4Q9FZJKTfS4sxGVXZ+dQ25ccBbSjsz7nEgTKRUzyMyvk7nEUKQ\nte4KsHZn1IUPqQG4Xa/P7KdLEQKBgQC+WlW2BX4nepECFAgHwmWVN/AZ3TfeiQU8\nIYoiArN4kvdCvWzkF8OG253imL5DGo8Lu+oWm+9Z1r9WSkCCxnsDMS7X7B4xT0Ja\nc4GYoT32+vX/lBCPd6aCleJZ/vQ5mQ3hwmjiTDidrN39IdZLVwYDrZ2eyUgJkdqF\nkNFGxLqfuwKBgAJauph6BRaiRreBNC6tvSrv5hp8wKoxDZtGcG5b/YX/WEHyWKld\n8Sjy3N4lFhLetHtiHPkiyUIIDxmvq9xifQnfbSN8s/upmBShxpM+CoPGHCIxgMsH\nZfJ73lcDCD8f9YdSNeN7e+NpYmloCTRMDNedjAbETeQwxQt6G8/tgE+BAoGAW9rp\nq2lhJBngKbmS2nOzY1tX8JMwp6FFNmwU5S6afl+lE76m8jaJcuU9fiApB+akCoyG\nfJyI1rhrIm+4S6MNr0+nhCh7tV3C7jT437dHWIxn8wn3J9QcNL2xOa5vGfBCo6OV\ny0XuuB+4C7OtXjPDQjkga4RDz+JjKbrlUhoS2IsCgYAhkhBmo/6MJtzKucKQTQpr\nD2SVGUndGYOeacl9/kXr9jSLfDYn70aDwJuwEmfFyxjp9XqHm1gEThe4uUORqoc5\nxIArvAAhmpGs/BBthJ6mgwvVjOAR2/jCkZtogPVcYaHQSdNO06/F7lmlItXH+ZgD\nz80DJlDOeCatDo1EANXOKQ==\n-----END PRIVATE KEY-----\n",
+    "client_email": "calendar-service@exultstore.iam.gserviceaccount.com",
+    "client_id": "103525673470350899747",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/calendar-service%40exultstore.iam.gserviceaccount.com"
+  }
+  
