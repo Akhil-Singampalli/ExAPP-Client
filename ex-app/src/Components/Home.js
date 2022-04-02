@@ -112,7 +112,7 @@ class Home extends Component {
 
 
                 <div className="card container-fluid" style={{ marginTop: "75px", width: "100%" }}>
-                    {/* <SimpleImageSlider
+                    <SimpleImageSlider
                         className="container-fluid"
                         width="98%"
                         height="85%"
@@ -120,7 +120,7 @@ class Home extends Component {
                         showBullets={true}
                         showNavs={true}
 
-                    /> */}
+                    />
 
                 </div>
                 <div>

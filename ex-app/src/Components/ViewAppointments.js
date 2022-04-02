@@ -7,13 +7,10 @@ import { Modal, ModalDialog } from 'react-bootstrap';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import { PatDetails } from './PatientData';
 
-
-
-
-
-
 import Calendar from './Calendar';
 import moment from "moment";
+import CreateGoogleEvent from './CreateEvent';
+
 
 
 
@@ -29,7 +26,7 @@ export default class ViewAppointments extends Component {
             doctorsData: [],
 
             formvalue: {
-                aptId:"",
+                aptId: "",
                 aptPatientId: "",
                 aptDoctorId: "",
                 aptTime: "",
@@ -84,7 +81,7 @@ export default class ViewAppointments extends Component {
         if (this.state.formvalue.aptDate != '' && this.state.formvalue.aptTime != '') {
 
             let aptData = {
-                aptId:this.state.formvalue.aptId,
+                aptId: this.state.formvalue.aptId,
                 aptPatient: sessionStorage.getItem("userId"),
                 aptDoctor: this.state.formvalue.aptDoctorId,
                 aptTime: this.state.formvalue.aptTime,
@@ -96,7 +93,7 @@ export default class ViewAppointments extends Component {
 
             console.log(aptData);
 
-            axios.post('http://localhost:8080/aptAPI/editApt/'+this.state.formvalue.aptId, aptData)
+            axios.post('http://localhost:8080/aptAPI/editApt/' + this.state.formvalue.aptId, aptData)
                 .then(response => this.setState({
 
                     successMessage: "Appointment Request Submitted Successfull !!",
@@ -154,7 +151,7 @@ export default class ViewAppointments extends Component {
 
     handleShowAptEdit = () => {
         this.setState({ showAptEdit: true })
-        
+
     }
 
     handleCloseAptEdit = () => {
@@ -166,13 +163,15 @@ export default class ViewAppointments extends Component {
         const name = event.target.name;
         const { formvalue } = this.state;
 
-        {this.state.aptData.map((val,key) => {
-            if(val.aptId == event.target.value){
-                console.log(val)
-                this.setState({ formvalue: { ...formvalue, aptId : val.aptId , aptPatient : val.aptPatient, aptStatus : val.aptStatus} })
-            }
-        })}
-        
+        {
+            this.state.aptData.map((val, key) => {
+                if (val.aptId == event.target.value) {
+                    console.log(val)
+                    this.setState({ formvalue: { ...formvalue, aptId: val.aptId, aptPatient: val.aptPatient, aptStatus: val.aptStatus } })
+                }
+            })
+        }
+
         console.log(this.state.formvalue)
 
         this.handleShowAptEdit()
@@ -194,6 +193,30 @@ export default class ViewAppointments extends Component {
             });
         window.location.reload(true)
     }
+
+    handleAddApointment = (event) => {
+        console.log(event.target.value)
+
+        { CreateGoogleEvent(event.target.value) }
+
+        let url = "http://localhost:8080/aptAPI/confirmApt/" + event.target.value
+        axios.put(url)
+            .then(response => this.setState({
+
+                successMessage: "Confirmed Successfully !!",
+                errorMessage: "",
+            })).catch(error => {
+                if (error.response) {
+                    this.setState({ errorMessage: error.response.data.message, successMessage: "" });
+                } else {
+                    this.setState({ errorMessage: "Server is down", successMessage: "" });
+                }
+            });
+
+        window.location.reload(true)
+    }
+
+
 
     alertshow = () => {
         alert("button clicked");
@@ -220,14 +243,14 @@ export default class ViewAppointments extends Component {
 
                                     return (
 
-                                        <div className='col-auto'>
+                                        <div className=' col-auto'>
 
-                                            <Td className='card  row' style={{}}>
+                                            <Td className='card' style={{}}>
 
                                                 <label className='text-center card-header' style={{ background: "rgba(255,200,100,0.8)", width: "100%", marginTop: "-0" }}><b>Appointment</b></label>
 
                                                 <div className='card-body'>
-                                                    <div className=''>
+                                                    <div className='form-control'>
 
                                                         <div>
                                                             {sessionStorage.getItem("userId") == 1 || sessionStorage.getItem("userId") < 10 ?
@@ -246,24 +269,39 @@ export default class ViewAppointments extends Component {
                                                         <div className='form form-group text-center'><h6><b>Appointment Date : </b>{val.aptDate}</h6></div>
                                                         <div className='form form-group text-center'><h6><b>Appointment Time : </b>{val.aptTime}</h6></div>
                                                         <div className='form form-group text-center'><h6><b>Status : </b> {val.aptStatus}</h6></div>
-                                                        <div className='row' >
 
 
-                                                            <div className='form-control  col'>
-                                                                {sessionStorage.getItem("userId") < 10 ?
-                                                                    <button className='btn btn-success' >Accept</button>
-                                                                    :
-                                                                    <button className='btn btn-danger' onClick={this.handleAptCancel} value={val.aptId}>Cancel</button>}
+
+
+                                                        {sessionStorage.getItem("userId") < 10 && sessionStorage.getItem("userId") != 1 ?
+                                                            <div className='col'>
+                                                                <button className='btn btn-success col-auto' onClick={this.handleAddApointment} value={val.aptId}>Accept</button>
+                                                                <button className='btn btn-danger col-auto' onClick={this.handleAptCancel} value={val.aptId}>Decline</button>
                                                             </div>
+                                                            :
+                                                            null
+                                                        }
 
-                                                            <div className='form-control col'>
-                                                                {sessionStorage.getItem("userId") < 10 ?
-                                                                    <button className='btn btn-danger '>Decline</button>
-                                                                    :
-                                                                    <button className='btn btn-info' onClick={this.handleAptUpdate} value={val.aptId}>Edit</button>}
+
+
+                                                        {sessionStorage.getItem("userId") > 10 ?
+                                                            <div className='row'>
+                                                                <button className='btn btn-danger col-auto' onClick={this.handleAptCancel} value={val.aptId}>Cancel</button>
+                                                                <button className='btn btn-info col-auto' onClick={this.handleAptUpdate} value={val.aptId}>Edit</button>
                                                             </div>
+                                                            :
+                                                            null
+                                                        }
 
-                                                        </div>
+
+                                                        {sessionStorage.getItem('userId') == 1 ?
+
+                                                            <div className="row">
+                                                                <button className='btn btn-success col-auto' onClick={this.handleAddApointment} value={val.aptId}>Accept</button>
+                                                                <button className='btn btn-danger col-auto' onClick={this.handleAptCancel} value={val.aptId}>Decline</button>
+                                                                <button className='btn btn-info col-auto' onClick={this.handleAptUpdate} value={val.aptId}>Edit</button>
+                                                            </div>
+                                                            : null}
 
                                                     </div>
 
