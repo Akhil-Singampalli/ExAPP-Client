@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 
 import axios from 'axios';
-
+import Gallery from 'react-photo-gallery';
 
 
 import Drive from './Drive'
-
+import { images } from '../utils/ImagesData';
 
 
 
@@ -23,7 +23,7 @@ export default class PatientDetails extends Component {
             data: [],
 
             hide: true,
-
+            images:[],
             PatName: "",
             successMessage: "",
             errorMessage: "",
@@ -38,7 +38,7 @@ export default class PatientDetails extends Component {
     }
 
     callback = (docs) => {
-        
+
         console.log(docs)
         const { data } = this.state;
 
@@ -149,6 +149,32 @@ export default class PatientDetails extends Component {
 
     }
 
+    ImageGallery = (item) => {
+        let gallery = []
+        
+            item.fieldValue.split(',').map((urls, index) => {
+
+                gallery.push(
+                    {
+                        src: "https://drive.google.com/uc?export=view&id=" + urls.match(/[-\w]{25,}/),
+                        width: 10,
+                        height: 7
+                    }
+                )
+                console.log(gallery);
+
+            })
+            // this.setState({images{...images, images : gallery}}
+            // return (
+            //         <div >
+            //             {/* <img src={"https://drive.google.com/uc?export=view&id=" + urls.match(/[-\w]{25,}/)} width="200px" height="200px" alt="cannot" /> */}
+            //             <Gallery photos={gallery} />
+            //         </ div>
+            //     )
+            
+        
+    }
+
     render() {
         return (
             <div className="App-header"  >
@@ -157,20 +183,20 @@ export default class PatientDetails extends Component {
                     <label className='text-center card-header' style={{ width: "100%" }}><b>{this.state.PatName} Details </b></label>
                     <div className=''>
                         <div className='form-control'>
-                            
+
                             <ul className='col-auto'>
                                 {/* <h6>{sessionStorage.getItem("userName")}</h6> */}
                                 {this.state.data.map((item, index) => {
                                     return (
                                         <div className='' key={index}>
-                                            
+
 
                                             <div  >
-                                             
+
 
                                                 {item.fieldType == "text" || "Number" || "Message" ?
 
-                                                    <div key={index} className="form form-group row" style={{ position: "left" }} >
+                                                    <div key={index} className="form form-group col-auto" style={{ alignItems:"flex-start" }} >
                                                         <label className='form-item' style={{ padding: '0.5rem' }}><b>{item.fieldName}</b></label>
                                                         <input id={item.fieldId}
                                                             className="form-item"
@@ -183,29 +209,29 @@ export default class PatientDetails extends Component {
                                                             disabled={this.state.hide}
                                                         >
                                                         </input>
-                                                    
+
                                                     </div>
 
                                                     : null}
-                                                   
-                                                    
+
+
                                                 {item.fieldType == ".jpeg" ?
-                                                
-                                                    
+
+
                                                     <div key={index} className="form form-group row" style={{ position: "left" }} >
                                                         {/* {let urls = item.fieldValue.split(',')} */}
 
                                                         {item.fieldValue.split(',').map((urls, index) => {
-                                                             console.log(urls);
-                                                                return(
-                                                                    <div key={index}>
-                                                                    <img src={"https://drive.google.com/uc?export=view&id="+ urls.match(/[-\w]{25,}/)} width="200px" height="200px" alt="cannot" />
-                                                                    </ div>
-                                                                    )
+                                                            console.log(urls);
+                                                            return (
+                                                                <div key={index}>
+                                                                    <img src={"https://drive.google.com/uc?export=view&id=" + urls.match(/[-\w]{25,}/)} width="200px" height="200px" alt="cannot" />
+                                                                </ div>
+                                                            )
 
                                                         })}
-
-
+                                                        {this.ImageGallery(item)}
+                                                            <Gallery photos={this.state.images} />
 
                                                     </div>
 
@@ -235,10 +261,10 @@ export default class PatientDetails extends Component {
                             type=""
                             className="btn btn-success form-group"
                             onClick={this.submitDetails}
-                            style={{ width: "100%" }}>
+                            style={{ width: "100%" , justifyContent : "center"}}>
                             <b>Submit</b>
                         </button>
-                        
+
                     </div>
                 </div>
             </div>

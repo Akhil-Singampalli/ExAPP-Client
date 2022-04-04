@@ -1,6 +1,8 @@
+import { toBeVisible } from "@testing-library/jest-dom/dist/matchers";
 import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { User } from "./models/User";
 
 class Register extends Component {
@@ -32,7 +34,8 @@ class Register extends Component {
             },
             successMessage: "",
             errorMessage: "",
-            login: false
+            login: false,
+            register : false
         };
     }
 
@@ -71,16 +74,17 @@ class Register extends Component {
                     usersData: response.data,
                     successMessage: "Registration Successfull !!",
                     errorMessage: "",
+                    buttonActive: false,
                     login: true
                 })).catch(error => {
                     if (error.response) {
-                        this.setState({ errorMessage: error.response.data.message, successMessage: "" });
+                        this.setState({ errorMessage: error.response.data.message, buttonActive: false, successMessage: "" });
                     } else {
-                        this.setState({ errorMessage: "Server is down", successMessage: "" });
+                        this.setState({ errorMessage: "Server is down", buttonActive: false, successMessage: "" });
                     }
                 });
         } else {
-            this.setState({ errorMessage: "Password didn't match" })
+            this.setState({ errorMessage: "Password didn't match",buttonActive: false, })
         }
 
     }
@@ -97,6 +101,7 @@ class Register extends Component {
         const { formvalue } = this.state;
         this.setState({ formvalue: { ...formvalue, [name]: value } });
         this.validate(event);
+       
     }
 
     validate = event => {
@@ -201,21 +206,25 @@ class Register extends Component {
             default:
                 break;
         }
-        formvalid.buttonActive = formvalid.name && formvalid.email && formvalid.contactNumber && formvalid.password;
+        console.log(formvalid)
+        formvalid.buttonActive = formvalid.name && formvalid.email && formvalid.contactNumber && formvalid.password ;
         this.setState({ formerrorMessage: validationerrorMessage, formvalid: formvalid, successMessage: "" });
     }
 
     render() {
+        // if(this.state.register)  return <Redirect to={"/login"} />
         return (
             <div className="App-header"  >
+                
                 <div >
                     <br></br>
                     <div className='card container-fluid' style={{ marginTop: "70px" }}>
                         <form className="form-control">
+                        
+                                    <h1 className="text-center card-header"><h3><b>Register</b></h3></h1>
+                                
                             <div className="card-body">
-                                <div className="text-center card-header">
-                                    <h2><b>Register</b></h2>
-                                </div>
+                                
                                 <div className="form-group form-col">
 
                                     <input id="firstname" className=" input-name" onChange={this.handeChange} placeholder="First Name" name="fname" value={this.state.formvalue.fname}>
@@ -261,12 +270,13 @@ class Register extends Component {
                                         <input id="confirmPassword" type="password" onChange={this.handeChange} placeholder="Confirm Password" name="confirmPassword" value={this.state.formvalue.confirmPassword}>
                                         </input>
                                     </div>
-
+                                        {console.log(this.state.formvalid.buttonActive)}
                                     <button
                                         type=
                                         "submit"
                                         className="btn btn-success"
-                                        onClick={this.handleSubmit}>
+                                        onClick={this.handleSubmit}
+                                        disabled={!this.state.formvalid.buttonActive}>
                                         <b>Register</b>
                                     </button>
                                 </div>

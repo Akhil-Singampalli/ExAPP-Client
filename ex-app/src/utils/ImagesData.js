@@ -27,7 +27,7 @@ export const MyCollection = [
     { url: image2 },
     { url: image3 },
     { url: image4 },
-    { url: "" },
+    { url: image5 },
     { url: ""
   },
     { url: "./images/image_7.jpg" },

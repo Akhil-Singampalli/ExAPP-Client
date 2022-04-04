@@ -17,7 +17,7 @@ export default class Appointment extends Component {
 
             doctorsData: [],
 
-            patientdata: [],
+            patient: {},
 
             aptData: [],
             availableTimeslots: [],
@@ -62,11 +62,11 @@ export default class Appointment extends Component {
             .then(response => this.setState({ doctorsData: response.data }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "No doctor exist" }) })
 
-        var urlP = "http://localhost:8080/patientAPI/patientData/" + sessionStorage.getItem("userId");
+        var urlP = "http://localhost:8080/patientAPI/patient/" + this.props.match.params.patientId;
         console.log(urlP)
 
         axios.get(urlP)
-            .then(response => this.setState({ patientdata: response.data }))
+            .then(response => this.setState({ patient: response.data }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "No doctor exist" }) })
 
     }
@@ -76,7 +76,7 @@ export default class Appointment extends Component {
         if(this.state.formvalue.aptDate != '' && this.state.formvalue.aptTime != ''){
 
             let aptData = {
-                aptPatient: sessionStorage.getItem("userId"),
+                aptPatient: this.props.match.params.patientId,
                 aptDoctor: this.state.formvalue.aptDoctorId,
                 aptTime: this.state.formvalue.aptTime,
                 aptDate: this.state.formvalue.aptDate,
@@ -221,7 +221,7 @@ export default class Appointment extends Component {
         return (
 
             <div className="App-header">
-                {sessionStorage.getItem("userId") ? null : <Redirect to={"/Register"} ></Redirect>}
+                {this.props.match.params.patientId ? null : <Redirect to={"/Register"} ></Redirect>}
                 <div className='card container-fluid' style={{ marginTop: "70px" , width:"70%"}}>
                     <div className="modal-body" role="document">
                         <h3 className="modal-title text-center card-header" id="modalRequestLabel" style={{ width: "100%" }}><b>Make an Appointment</b></h3>
@@ -231,7 +231,7 @@ export default class Appointment extends Component {
                                 <form className='form' onSubmit={this.handleSubmit} >
                                     <div className="form-group">
 
-                                        <input type="text" className="form-control hidden" id="appointment_name" placeholder={sessionStorage.getItem("userName")} name="aptPatientId" onChange={this.handeChange} value={this.state.formvalue.aptPatientId} />
+                                        <input type="text" className="form-control hidden" id="appointment_name" placeholder={this.state.patient.patientName} name="aptPatientId" onChange={this.handeChange} value={this.state.formvalue.aptPatientId} />
                                     </div>
                                     {this.state.formerrorMessage.name ? (
                                         <span className="text-center alert-warning">{this.state.formerrorMessage.name}</span>
@@ -239,14 +239,14 @@ export default class Appointment extends Component {
 
                                     <div className="form-group">
 
-                                        <input type="text" className="form-control" id="appointment_email" placeholder={sessionStorage.getItem("emailId")} onChange={this.handeChange} name="email" value={this.state.formvalue.email} />
+                                        <input type="text" className="form-control" id="appointment_email" placeholder={this.state.patient.emailId} onChange={this.handeChange} name="email" value={this.state.formvalue.email} />
                                     </div>
                                     {this.state.formerrorMessage.email ? (
                                         <span className="text-center alert-warning">{this.state.formerrorMessage.email}</span>
                                     ) : null}
 
                                     <div className="form-group ">
-                                        <input id="contactNumber" className="form-control required" type="tel" onChange={this.handeChange} placeholder={sessionStorage.getItem("contactNumber")} name="contactNumber" value={this.state.formvalue.contactNumber}>
+                                        <input id="contactNumber" className="form-control required" type="tel" onChange={this.handeChange} placeholder={this.state.patient.contactNumber} name="contactNumber" value={this.state.formvalue.contactNumber}>
                                         </input>
                                     </div>
 

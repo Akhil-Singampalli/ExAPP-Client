@@ -225,79 +225,7 @@ export default class Calendar extends Component {
         end.setTime(start.getTime() + (15 * 60000))
         // console.log(start)
         this.onTrigger(start)
-        // gapi.load('client:auth2', () => {
-        //     console.log('loaded client')
-
-
-        // gapi.client.load('client', () => console.log('bam!'))
-
-        // gapi.client.init({
-        //     apiKey: "AIzaSyDrVkS-ZRFRmTsJvLQTNpshIfEGyr2XhhI",
-        //     clientId: "229521899518-v2nb1anhnuj8n1rkqsi0qrpjojkl3l7r.apps.googleusercontent.com",
-        //     discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
-        //     scope: "https://www.googleapis.com/auth/calendar.events"
-        // }).then(
-        //     // var GoogleAuth = new GoogleAuth(gapi.auth2.getAuthInstance())
-        //     // console.log(GoogleAuth.isSignedIn().get())
-
-        //         function () {
-        //             return gapi.client.request({
-        //                 path: `https://www.google.com/calendar/v3/calendars/singampalliakhil@gmail.com/render?action=TEMPLATE&text=event&details=ascacasc&location=acsa&dates=20220331T132100Z%2F20220331T142100Z`
-        //             });
-        //         }
-
-        // )
-        // .then(() => {
-
-        //     let start = new Date(time.startTime.getTime())
-        //     let end = new Date();
-        //     end.setTime(start.getTime() + (15 * 60000))
-        //     console.log(end)
-        //     // this.setState({start: start , end : end})  
-        //     // console.log(this.state.start)          
-
-        //     var event = {
-        //         'summary': 'Appointment Request',
-        //         'location': 'Exult Clinic,Siripuram',
-        //         'description': 'Regular Visit',
-        //         'start': {
-        //             'dateTime': start,
-        //             'timeZone': 'IST'
-        //         },
-        //         'end': {
-        //             'dateTime': end,
-        //             'timeZone': 'IST'
-        //         },
-        //         'attendees': [
-        //             { 'email': "pat1@gmail.com" },
-        //             { 'email': "doc1@gmail.com" }
-        //         ],
-        //         'reminders': {
-        //             'useDefault': false,
-        //             'overrides': [
-        //                 { 'method': 'email', 'minutes': 24 * 60 },
-        //                 { 'method': 'popup', 'minutes': 10 }
-        //             ]
-        //         }
-        //     }
-
-
-        //     // var request = gapi.client.calendar.events.insert({
-        //     //     'calendarId': "bsurya1998@gmail.com",
-        //     //     'resource': event,
-        //     // })
-
-        //     // request.execute(event => {
-        //     //     console.log(event)
-        //     //     window.open(event.htmlLink)
-        //     // })
-
-
-        // })
-
-
-
-        //   })
+        
     }
 
 
@@ -379,39 +307,39 @@ export default class Calendar extends Component {
             {this.slotsAvailability()}
         }
         
-        const { time, events } = this.state;
+        // const { time, events } = this.state;
 
 
-        let eventsList = events.map(function (event) {
-            return (
-                <label
-                    className="list-group-item"
-                    // href={event.htmlLink
-                    target="_blank"
-                    key={event.id}
-                >
-                    {event.summary}{" "}
-                    <span className="badge">
-                        {moment(event.start.dateTime).format("h:mm a")},{" "}
-                        {moment(event.end.dateTime).diff(
-                            moment(event.start.dateTime),
-                            "minutes"
-                        )}{" "}
-                        minutes, {moment(event.start.dateTime).format("MMMM Do")}{" "}
-                    </span>
-                </label>
-            );
-        });
+        // let eventsList = events.map(function (event) {
+        //     return (
+        //         <label
+        //             className="list-group-item"
+        //             // href={event.htmlLink
+        //             target="_blank"
+        //             key={event.id}
+        //         >
+        //             {event.summary}{" "}
+        //             <span className="badge">
+        //                 {moment(event.start.dateTime).format("h:mm a")},{" "}
+        //                 {moment(event.end.dateTime).diff(
+        //                     moment(event.start.dateTime),
+        //                     "minutes"
+        //                 )}{" "}
+        //                 minutes, {moment(event.start.dateTime).format("MMMM Do")}{" "}
+        //             </span>
+        //         </label>
+        //     );
+        // });
 
-        let emptyState = (
-            <div className="empty">
-                {/* <img src="./image" alt="Welcome" /> */}
-                <h6>
-                    No meetings are scheduled for the day. Create one by clicking the
-                    button below.
-                </h6>
-            </div>
-        );
+        // let emptyState = (
+        //     <div className="empty">
+        //         {/* <img src="./image" alt="Welcome" /> */}
+        //         <h6>
+        //             No meetings are scheduled for the day. Create one by clicking the
+        //             button below.
+        //         </h6>
+        //     </div>
+        // );
 
 
 
@@ -439,7 +367,7 @@ export default class Calendar extends Component {
                 // onStartTimeSelect={console.log}
                 />
 
-                <div className="form-group">
+                {/* <div className="form-group">
                     <h4 style={this.state.isBusy ? { color: "red" } : { color: "green" }} ><b>{this.state.isBusy ? "BUSY" : "OPEN"}</b></h4>
                 </div>
                 <div className="upcoming-meetings">
@@ -456,7 +384,7 @@ export default class Calendar extends Component {
                     >
                         +
                     </a>
-                </div>
+                </div> */}
             </div>
         );
     }

@@ -88,19 +88,20 @@ class NavBar extends Component {
                             <button className="menu-bars" onClick={this.toggleSidebar}><ImIcons.ImMenu /></button>
                         ) : null}
 
-                        <div className="container">
+                        <div className="container-fluid">
 
-                            <a className="navbar-brand" href="/"><b>e</b>-xult</a>
+                            <a className="navbar-brand" href="/" style={{marginLeft:"80px"}}><b>e</b>-xult</a>
 
                             <div className="collapse navbar-collapse" id="ftco-nav">
-                                <ul className="navbar-nav ml-auto row" >
-                                    <li className="nav-item active cta"><Link className="nav-link" to="/">Home</Link></li>
-                                    <li className="nav-item cta"><a href="about.html" className="nav-link">About</a></li>
-                                    <li className="nav-item cta"><a href="services.html" className="nav-link">Services</a></li>
-                                    <li className="nav-item cta"><a href="doctors.html" className="nav-link">Doctors</a></li>
-                                    <li className="nav-item cta"><a href="blog.html" className="nav-link">Blog</a></li>
-                                    <li className="nav-item cta"><a href="contact.html" className="nav-link">Contact</a></li>
-                                    <li className="nav-item cta"><Link href="contact.html" className="nav-link" to="/appointment">Book Appointment</Link></li>
+                                <ul className="navbar-nav ml-auto col-auto" style={{padding:"0.2"}} >
+                                    <li className="nav-item active cta "><Link className="nav-link" to="/">Home</Link></li>
+                                    <li className="nav-item cta "><a href="about.html" className="nav-link">About</a></li>
+                                    <li className="nav-item cta "><a href="services.html" className="nav-link">Services</a></li>
+                                    <li className="nav-item cta "><a href="doctors.html" className="nav-link">Doctors</a></li>
+                                    <li className="nav-item cta "><a href="blog.html" className="nav-link">Blog</a></li>
+                                    <li className="nav-item cta "><a href="contact.html" className="nav-link">Contact</a></li>
+                                    <li className="nav-item cta "><Link href="contact.html" className="nav-link" to="/appointment/">Book Appointment</Link></li>
+                                    
                                     {!this.state.logged_userId ? (
                                         <li className="nav-item cta"><Link className="nav-link" to="/Login"><b>Log In</b></Link></li>
                                     ) : null}
@@ -201,7 +202,7 @@ class NavBar extends Component {
                             <Route exact path="/" component={Home}></Route>
                             <Route exact path="/Login" component={Login}></Route>
                             <Route path="/register" component={Register}></Route>
-                            <Route path="/appointment" component={Appointment}></Route>
+                            <Route path="/appointment/:patientId" component={Appointment}></Route>
                             <Route exact path="/details/:patientId" component={PatientDetails}></Route>
                             <Route path="/patientPageEdit" component={AdminPatientDetailsEdit}></Route>
                             <Route path="/addPatDetails" component={DocUpdatePatData}></Route>

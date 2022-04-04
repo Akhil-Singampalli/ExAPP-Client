@@ -19,6 +19,8 @@ class DocUpdatePatData extends Component {
         this.state = {
 
             patData: [],
+            entry:"",
+            patDataCopy: [],
 
             successMessage: "",
             errorMessage: "",
@@ -39,7 +41,7 @@ class DocUpdatePatData extends Component {
 
     getDetails = () => {
         axios.get('http://localhost:8080/docAPI/patdata/1')
-            .then(response => this.setState({ patData: response.data, errorMessage: "", successMessage: "success" }))
+            .then(response => this.setState({ patData: response.data, patDataCopy: response.data, errorMessage: "", successMessage: "success" }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "No doctor exist" }) })
         console.log(this.state.doctorsData)
     }
@@ -52,6 +54,21 @@ class DocUpdatePatData extends Component {
         const { formvalue } = this.state;
         this.setState({ formvalue: { ...formvalue, [name]: value } });
         this.validate(event);
+    }
+
+    handleSearch = (event) => {
+        const word = event.target.value;
+        console.log(word)
+        if(word != ''){
+            const filtered = this.state.patDataCopy.filter(entry => Object.values(entry).some(val => typeof val === "string" && val.toLocaleLowerCase().includes(word.toLocaleLowerCase())));
+
+        console.log(filtered)
+        this.setState({patData : filtered})
+        }else{
+            this.setState({patData : this.state.patDataCopy})
+        }
+        
+        
     }
 
 
@@ -67,7 +84,7 @@ class DocUpdatePatData extends Component {
                         <div className='right form-control col-auto' style={{}}>
                             
 
-                            <input className='' style={{ padding: '0.5px' ,float : "right"}} placeholder='   Search   '></input>
+                            <input className='search' style={{ padding: '0.5px' ,float : "right"}} placeholder='   Search   ' name="search" onChange={this.handleSearch}></input>
                             <FaSearch className=''style={{ padding: '1px' ,float : "right",marginTop:"5px",marginRight:"5px"}}></FaSearch>
                         </div>
 
@@ -78,6 +95,7 @@ class DocUpdatePatData extends Component {
                                 <Th className='thead th col-3'>Contact Number</Th>
                                 <Th className='thead th col-4'>Email id</Th>
                                 <Th className='thead th col-2'>Details</Th>
+                                <Th className='thead th col-2'>Appointment</Th>
                             </Tr>
                             {this.state.patData.map((val, key) => {
                                 return (
@@ -95,7 +113,17 @@ class DocUpdatePatData extends Component {
                                             <Td  className='tdata  td'>
                                                 <ButtonToolbar className='tdata  td'>
                                                     <Link to={"/details/" + val.idPatient} >
-                                                        <button type="submit" className='btn btn-primary tdata td' onClick={() => <Redirect to={"/details/" + val.idPatient} ></Redirect>} >Details ... </button>
+                                                        <button type="submit" className='btn btn-primary tdata td'>Details ... </button>
+                                                        
+                                                    </Link>
+                                                </ButtonToolbar>
+
+                                            </Td>
+                                            <Td  className='tdata  td'>
+                                                <ButtonToolbar className='tdata  td'>
+                                                    <Link to={"/appointment/" + val.idPatient} >
+                                                       
+                                                        <button type="success" className='btn btn-warning tdata td' >Book Appointment </button>
                                                     </Link>
                                                 </ButtonToolbar>
 
