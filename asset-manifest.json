@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/ExAPP-Client/static/css/main.0e03c97e.chunk.css",
+    "main.js": "/ExAPP-Client/static/js/main.b3ce6013.chunk.js",
+    "main.js.map": "/ExAPP-Client/static/js/main.b3ce6013.chunk.js.map",
+    "runtime-main.js": "/ExAPP-Client/static/js/runtime-main.14b7581f.js",
+    "runtime-main.js.map": "/ExAPP-Client/static/js/runtime-main.14b7581f.js.map",
+    "static/css/2.5f2c22c6.chunk.css": "/ExAPP-Client/static/css/2.5f2c22c6.chunk.css",
+    "static/js/2.0f636fd6.chunk.js": "/ExAPP-Client/static/js/2.0f636fd6.chunk.js",
+    "static/js/2.0f636fd6.chunk.js.map": "/ExAPP-Client/static/js/2.0f636fd6.chunk.js.map",
+    "static/js/3.35d5a86c.chunk.js": "/ExAPP-Client/static/js/3.35d5a86c.chunk.js",
+    "static/js/3.35d5a86c.chunk.js.map": "/ExAPP-Client/static/js/3.35d5a86c.chunk.js.map",
+    "index.html": "/ExAPP-Client/index.html",
+    "static/css/2.5f2c22c6.chunk.css.map": "/ExAPP-Client/static/css/2.5f2c22c6.chunk.css.map",
+    "static/css/main.0e03c97e.chunk.css.map": "/ExAPP-Client/static/css/main.0e03c97e.chunk.css.map",
+    "static/js/2.0f636fd6.chunk.js.LICENSE.txt": "/ExAPP-Client/static/js/2.0f636fd6.chunk.js.LICENSE.txt",
+    "static/media/1.7202ad83.jpg": "/ExAPP-Client/static/media/1.7202ad83.jpg",
+    "static/media/2.89b0491b.jpg": "/ExAPP-Client/static/media/2.89b0491b.jpg",
+    "static/media/3.f841c949.jpg": "/ExAPP-Client/static/media/3.f841c949.jpg",
+    "static/media/4.2b1e9d92.jpg": "/ExAPP-Client/static/media/4.2b1e9d92.jpg",
+    "static/media/5.572c6d8d.jpg": "/ExAPP-Client/static/media/5.572c6d8d.jpg",
+    "static/media/flaticon.css": "/ExAPP-Client/static/media/Flaticon.ba30a557.svg",
+    "static/media/App.css": "/ExAPP-Client/static/media/Healthcare-1-1920x1080.6da49c7f.jpg",
+    "static/media/icomoon.css": "/ExAPP-Client/static/media/icomoon.f76c54c1.eot",
+    "static/media/ionicons.min.css": "/ExAPP-Client/static/media/ionicons.d4df1d7d.ttf",
+    "static/media/logo.6ce24c58.svg": "/ExAPP-Client/static/media/logo.6ce24c58.svg",
+    "static/media/open-iconic-bootstrap.min.css": "/ExAPP-Client/static/media/open-iconic.bff1e040.otf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.14b7581f.js",
+    "static/css/2.5f2c22c6.chunk.css",
+    "static/js/2.0f636fd6.chunk.js",
+    "static/css/main.0e03c97e.chunk.css",
+    "static/js/main.b3ce6013.chunk.js"
+  ]
+}
