@@ -3,11 +3,10 @@ import React, { Component } from 'react';
 
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import { FaArrowAltCircleDown, FaArrowDown, FaCartArrowDown, FaDocker, FaSearch, FaSortDown } from 'react-icons/fa';
-// import { right } from '@popperjs/core';
 
-import { Redirect, Link } from 'react-router-dom';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 
 
@@ -19,7 +18,7 @@ class DocUpdatePatData extends Component {
         this.state = {
 
             patData: [],
-            entry:"",
+            entry: "",
             patDataCopy: [],
 
             successMessage: "",
@@ -34,7 +33,7 @@ class DocUpdatePatData extends Component {
         };
     }
 
-    componentDidMount () {
+    componentDidMount() {
         this.getDetails();
         console.log("here");
     }
@@ -59,16 +58,16 @@ class DocUpdatePatData extends Component {
     handleSearch = (event) => {
         const word = event.target.value;
         console.log(word)
-        if(word != ''){
+        if (word != '') {
             const filtered = this.state.patDataCopy.filter(entry => Object.values(entry).some(val => typeof val === "string" && val.toLocaleLowerCase().includes(word.toLocaleLowerCase())));
 
-        console.log(filtered)
-        this.setState({patData : filtered})
-        }else{
-            this.setState({patData : this.state.patDataCopy})
+            console.log(filtered)
+            this.setState({ patData: filtered })
+        } else {
+            this.setState({ patData: this.state.patDataCopy })
         }
-        
-        
+
+
     }
 
 
@@ -78,73 +77,72 @@ class DocUpdatePatData extends Component {
 
             <div className='App-header' >
 
-                
-                    <div className='card container-fluid' style={{ marginTop: "75px", width : "100%" }}>
-                        <label className='text-center card-header' style={{width:"100%"}}><b>Patients Details</b></label>
-                        <div className='right form-control col-auto' style={{}}>
-                            
 
-                            <input className='search' style={{ padding: '0.5px' ,float : "right"}} placeholder='   Search   ' name="search" onChange={this.handleSearch}></input>
-                            <FaSearch className=''style={{ padding: '1px' ,float : "right",marginTop:"5px",marginRight:"5px"}}></FaSearch>
-                        </div>
+                <div className='card container-fluid' style={{ marginTop: "75px", width: "100%" }}>
+                    <label className='text-center card-header' style={{ width: "100%" }}><b>Patients Details</b></label>
+                    <div className='right form-control col-auto' style={{}}>
 
-                        <Table className='table form-control ' style={{width:"100%"}}>
-                            <Tr>
-                                <Th className='thead th column-collapse'>.</Th>
-                                <Th className='thead th  col-3'>Patient Name</Th>
-                                <Th className='thead th col-3'>Contact Number</Th>
-                                <Th className='thead th col-4'>Email id</Th>
-                                <Th className='thead th col-2'>Details</Th>
+
+                        <input className='search' style={{ padding: '0.5px', float: "right" }} placeholder='   Search   ' name="search" onChange={this.handleSearch}></input>
+                        <FaSearch className='' style={{ padding: '1px', float: "right", marginTop: "5px", marginRight: "5px" }}></FaSearch>
+                    </div>
+
+                    <Table className='table form-control ' style={{ width: "100%" }}>
+                        <Tr>
+                            <Th className='thead th column-collapse'>#ID</Th>
+                            <Th className='thead th  col-3'>Patient Name</Th>
+                            <Th className='thead th col-3'>Contact Number</Th>
+                            <Th className='thead th col-4'>Email id</Th>
+                            <Th className='thead th col-2'>Details</Th>
+                            {sessionStorage.getItem("userId") == 1 ?
                                 <Th className='thead th col-2'>Appointment</Th>
-                            </Tr>
-                            {this.state.patData.map((val, key) => {
-                                return (
-                                    <Tbody>
-                                        <Tr key={key}>
-                                            <Td>
+                                : null}
+
+                        </Tr>
+                        {this.state.patData.map((val, key) => {
+                            return (
+                                <Tbody>
+                                    <Tr key={key}>
+                                        {/* <Td>
                                                 <button className="btn br-button btn-info" type="button" data-toggle="collapse" data-target="collapse-1-4-4527"><FaSortDown></FaSortDown>
                                                 </button>
-                                            </Td>
+                                            </Td> */}
 
+                                        <Td className='tdata td col-xl-auto'><Link>{val.idPatient}</Link></Td>
+                                        <Td className='tdata td col-xl-auto'>{val.patientName}</Td>
+                                        <Td className='tdata  td'>{val.contactNumber}</Td>
+                                        <Td className='tdata  td'>{val.emailId}</Td>
+                                        <Td className='tdata  td'>
+                                            <ButtonToolbar className='tdata  td'>
+                                                <Link to={"/details/" + val.idPatient} >
+                                                    <button type="submit" className='btn btn-primary tdata td'>Details ... </button>
 
-                                            <Td className='tdata td col-xl-auto'>{val.patientName}</Td>
-                                            <Td className='tdata  td'>{val.contactNumber}</Td>
-                                            <Td className='tdata  td'>{val.emailId}</Td>
-                                            <Td  className='tdata  td'>
-                                                <ButtonToolbar className='tdata  td'>
-                                                    <Link to={"/details/" + val.idPatient} >
-                                                        <button type="submit" className='btn btn-primary tdata td'>Details ... </button>
-                                                        
-                                                    </Link>
-                                                </ButtonToolbar>
+                                                </Link>
+                                            </ButtonToolbar>
 
-                                            </Td>
-                                            <Td  className='tdata  td'>
+                                        </Td>
+                                        {(sessionStorage.getItem("userId") == 1) ?
+                                            <Td className='tdata  td'>
                                                 <ButtonToolbar className='tdata  td'>
                                                     <Link to={"/appointment/" + val.idPatient} >
-                                                       
+
                                                         <button type="success" className='btn btn-warning tdata td' >Book Appointment </button>
                                                     </Link>
                                                 </ButtonToolbar>
 
-                                            </Td>
+                                            </Td>   
+                                            : null}
+                                    </Tr>
+                                </Tbody>
 
-                                        </Tr>
-                                        <Tr className="collapse br-table column-checkbox">
-                                            <Td id="collapse-1-4-4527" aria-hidden="true" hidden="hidden" colspan="6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies aliquet lacinia. Vestibulum in interdum eros. Donec vel tempus diam. Aenean pulvinar mattis nisi in laoreet. Integer felis mi, vehicula sed pretium sit amet, pellentesque vel nisl. Curabitur metus ante, pellentesque in lectus a, sagittis imperdiet mi.</Td>
-                                        </Tr>
+                            )
+                        })}
+                        <tr>
 
-                                    </Tbody>
+                        </tr>
+                    </Table>
+                </div>
 
-
-                                )
-                            })}
-                            <tr>
-
-                            </tr>
-                        </Table>
-                    </div>
-                
             </div>
 
         )

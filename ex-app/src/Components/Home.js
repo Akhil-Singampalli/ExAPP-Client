@@ -12,6 +12,7 @@ import GDrive from "./GDrive";
 import DriveLogOut from "./DriveLogout";
 import DriveLogin from "./DriveLogin"
 import Drive from "./Drive";
+import SMS from "./SMSnootificationManager";
 
 
 
@@ -22,19 +23,20 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            fileObj: '',
+            fileObj: {
+                mobileNo :""
+            },
             accessToken: '',
 
 
         };
     }
 
-    
-    
+    sms = () => {
+        SMS(this.state.fileObj);
+    }
 
     
-
-
     render() {
         return (
             <div className="App-header">
@@ -57,7 +59,7 @@ class Home extends Component {
                     {/* <GDrive /> */}
                     {/* <Drive /> */}
                     {/* <img src="https://drive.google.com/uc?export=view&id=1eG9rA3T74NG69AoZkNXSyfnoXvMpD9_K" alt="emo"></img> */}
-                    {/* <button className="btn" onClick={this.calendar} >calendar</button> */}
+                    <button className="btn" onClick={this.sms} >Send</button>
                    
                 </div>
             

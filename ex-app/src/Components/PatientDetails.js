@@ -7,6 +7,7 @@ import Gallery from 'react-photo-gallery';
 
 import Drive from './Drive'
 import { images } from '../utils/ImagesData';
+import App from './GDrive';
 
 
 
@@ -23,7 +24,7 @@ export default class PatientDetails extends Component {
             data: [],
 
             hide: true,
-            images:[],
+            images: [],
             PatName: "",
             successMessage: "",
             errorMessage: "",
@@ -151,28 +152,30 @@ export default class PatientDetails extends Component {
 
     ImageGallery = (item) => {
         let gallery = []
-        
-            item.fieldValue.split(',').map((urls, index) => {
 
-                gallery.push(
-                    {
-                        src: "https://drive.google.com/uc?export=view&id=" + urls.match(/[-\w]{25,}/),
-                        width: 10,
-                        height: 7
-                    }
-                )
-                console.log(gallery);
+        item.fieldValue.split(',').map((urls, index) => {
 
-            })
-            // this.setState({images{...images, images : gallery}}
-            // return (
-            //         <div >
-            //             {/* <img src={"https://drive.google.com/uc?export=view&id=" + urls.match(/[-\w]{25,}/)} width="200px" height="200px" alt="cannot" /> */}
-            //             <Gallery photos={gallery} />
-            //         </ div>
-            //     )
-            
-        
+            gallery.push(
+                {
+                    src: "https://drive.google.com/uc?export=view&id=" + urls.match(/[-\w]{25,}/),
+                    width: 10,
+                    height: 7
+                }
+            )
+            console.log(gallery);
+
+        })
+
+        // return gallery;
+        // this.setState({images{...images, images : gallery}}
+        return (
+            <div >
+                {/* <img src={"https://drive.google.com/uc?export=view&id=" + urls.match(/[-\w]{25,}/)} width="200px" height="200px" alt="cannot" /> */}
+                <Gallery photos={gallery} />
+            </ div>
+        )
+
+
     }
 
     render() {
@@ -189,14 +192,10 @@ export default class PatientDetails extends Component {
                                 {this.state.data.map((item, index) => {
                                     return (
                                         <div className='' key={index}>
-
-
                                             <div  >
-
-
                                                 {item.fieldType == "text" || "Number" || "Message" ?
 
-                                                    <div key={index} className="form form-group col-auto" style={{ alignItems:"flex-start" }} >
+                                                    <div key={index} className="form form-group col-auto" style={{ alignItems: "flex-start" }} >
                                                         <label className='form-item' style={{ padding: '0.5rem' }}><b>{item.fieldName}</b></label>
                                                         <input id={item.fieldId}
                                                             className="form-item"
@@ -214,31 +213,39 @@ export default class PatientDetails extends Component {
 
                                                     : null}
 
-
                                                 {item.fieldType == ".jpeg" ?
 
-
                                                     <div key={index} className="form form-group row" style={{ position: "left" }} >
+
+
                                                         {/* {let urls = item.fieldValue.split(',')} */}
+                                                        <label className='form-item' style={{ padding: '0.5rem' }}><b>{item.fieldName}</b></label>
+                                                        <ul className='col-auto'>
+                                                            {item.fieldValue.split(',').map((urls, index) => {
 
-                                                        {item.fieldValue.split(',').map((urls, index) => {
-                                                            console.log(urls);
-                                                            return (
-                                                                <div key={index}>
-                                                                    <img src={"https://drive.google.com/uc?export=view&id=" + urls.match(/[-\w]{25,}/)} width="200px" height="200px" alt="cannot" />
-                                                                </ div>
-                                                            )
+                                                                return (
+                                                                    <li className="nav-item cta">
+                                                                        <a href={urls} className="nav-link">{urls}</a>
+                                                                    </li>
 
-                                                        })}
-                                                        {this.ImageGallery(item)}
-                                                            <Gallery photos={this.state.images} />
+                                                                )
+
+
+                                                                // return (
+                                                                //     <div key={index}>
+                                                                //         <img src={"https://drive.google.com/uc?export=view&id=" + urls.match(/[-\w]{25,}/)} width="200px" height="200px" alt="cannot" />
+                                                                //     </ div>
+                                                                // )
+
+                                                            })}
+                                                        </ul>
+
+                                                        {/* {console.log(this.ImageGallery(item))}
+                                                        <Gallery photos={this.state.images} /> */}
 
                                                     </div>
 
                                                     : null}
-
-
-
                                             </div>
 
                                         </div>
@@ -249,7 +256,7 @@ export default class PatientDetails extends Component {
                                     <div className="form form-group row"  >
 
                                         <Drive className="form-item" style={{ borderLeft: "80px" }} parentCallback={this.callback} />
-
+                                        <App></App>
                                     </div>
 
                                 }
@@ -261,7 +268,7 @@ export default class PatientDetails extends Component {
                             type=""
                             className="btn btn-success form-group"
                             onClick={this.submitDetails}
-                            style={{ width: "100%" , justifyContent : "center"}}>
+                            style={{ width: "100%", justifyContent: "center" }}>
                             <b>Submit</b>
                         </button>
 

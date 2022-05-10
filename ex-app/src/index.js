@@ -25,6 +25,14 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+// document.addEventListener( 'DOMContentLoaded', function() {
+//   var element = document.getElementById( 'wprk-admin-app' );
+//   if( typeof element !== 'undefined' && element !== null ) {
+//       ReactDOM.render( <NavBar />, document.getElementById( 'wprk-admin-app' ) );
+//   }
+// } )
+
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

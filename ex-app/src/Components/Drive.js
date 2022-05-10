@@ -79,7 +79,7 @@ export default function Drive({ parentCallback }) {
     openPicker({
       clientId,
       developerKey,
-      viewId: "DOCS",
+      viewId: "FOLDERS",
       MimeTypes: "video/mp4 ,image/jpeg",
       supportDrives: true,
       multiselect: true,
