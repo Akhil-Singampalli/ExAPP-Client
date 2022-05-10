@@ -1,8 +1,7 @@
 {
-  "homepage": "https://akhil-singampalli.github.io/ExAPP-Client/"
+  "homepage": "https://akhil-singampalli.github.io/ExAPP-Client/",
   "name": "exapp",
   "version": "0.1.0",
-  "homepage": "http://bookappoint.com",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.3.0-beta3",
