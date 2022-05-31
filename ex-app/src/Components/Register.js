@@ -68,7 +68,7 @@ class Register extends Component {
         console.log(this.state.formvalue.confirmPassword);
         if (this.state.formvalue.password === this.state.formvalue.confirmPassword) {
 
-            axios.post('http://localhost:8080/patientAPI/patientRegister', userData)
+            axios.post("http://localhost:8080/exult/patientAPI/patientRegister", userData)
                 .then(response => this.setState({
 
                     usersData: response.data,
@@ -221,7 +221,7 @@ class Register extends Component {
                     <div className='card container-fluid' style={{ marginTop: "70px" }}>
                         <form className="form-control">
                         
-                                    <h1 className="text-center card-header"><h3><b>Register</b></h3></h1>
+                                    <h1 className="text-center card-header"><h3><b>Patient Registration</b></h3></h1>
                                 
                             <div className="card-body">
                                 

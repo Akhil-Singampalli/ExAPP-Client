@@ -44,7 +44,7 @@ class Login extends Component {
             contactNumber : this.state.formvalue.contactNumber,
             password : this.state.formvalue.password
         }
-        axios.post('http://localhost:8080/loginAPI/login',LoginForm)
+        axios.post('http://localhost:8080/exult/loginAPI/login',LoginForm)
         .then(response => { this.setState({
  
             register: false,

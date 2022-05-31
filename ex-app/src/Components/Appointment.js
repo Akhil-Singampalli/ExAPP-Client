@@ -57,12 +57,12 @@ export default class Appointment extends Component {
     }
 
     getDetails = () => {
-        let urlD = "http://localhost:8080/docAPI/details";
+        let urlD = "https://exapp-database.uc.r.appspot.com/exult/docAPI/details";
         axios.get(urlD)
             .then(response => this.setState({ doctorsData: response.data }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "No doctor exist" }) })
 
-        var urlP = "http://localhost:8080/patientAPI/patient/" + this.props.match.params.patientId;
+        var urlP = "https://exapp-database.uc.r.appspot.com/exult/patientAPI/patient/" + this.props.match.params.patientId;
         console.log(urlP)
 
         axios.get(urlP)
@@ -87,7 +87,7 @@ export default class Appointment extends Component {
     
             console.log(aptData);
     
-            axios.post('http://localhost:8080/aptAPI/bookApt', aptData)
+            axios.post('https://exapp-database.uc.r.appspot.com/exult/aptAPI/bookApt', aptData)
                 .then(response => this.setState({
     
                     aptData: response.data,

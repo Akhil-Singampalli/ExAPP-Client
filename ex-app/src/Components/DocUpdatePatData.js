@@ -39,10 +39,11 @@ class DocUpdatePatData extends Component {
     }
 
     getDetails = () => {
-        axios.get('http://localhost:8080/docAPI/patdata/1')
+        const url = "http://localhost:8080/exult/docAPI/patdata/1";
+        axios.get(url)
             .then(response => this.setState({ patData: response.data, patDataCopy: response.data, errorMessage: "", successMessage: "success" }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "No doctor exist" }) })
-        console.log(this.state.doctorsData)
+        console.log(this.state.patData)
     }
 
 
@@ -102,37 +103,40 @@ class DocUpdatePatData extends Component {
                         {this.state.patData.map((val, key) => {
                             return (
                                 <Tbody>
-                                    <Tr key={key}>
-                                        {/* <Td>
-                                                <button className="btn br-button btn-info" type="button" data-toggle="collapse" data-target="collapse-1-4-4527"><FaSortDown></FaSortDown>
-                                                </button>
-                                            </Td> */}
+                                    {val.patientId >100 ? 
+                                     <Tr key={key}>
+                                     {/* <Td>
+                                             <button className="btn br-button btn-info" type="button" data-toggle="collapse" data-target="collapse-1-4-4527"><FaSortDown></FaSortDown>
+                                             </button>
+                                         </Td> */}
 
-                                        <Td className='tdata td col-xl-auto'><Link>{val.idPatient}</Link></Td>
-                                        <Td className='tdata td col-xl-auto'>{val.patientName}</Td>
-                                        <Td className='tdata  td'>{val.contactNumber}</Td>
-                                        <Td className='tdata  td'>{val.emailId}</Td>
-                                        <Td className='tdata  td'>
-                                            <ButtonToolbar className='tdata  td'>
-                                                <Link to={"/details/" + val.idPatient} >
-                                                    <button type="submit" className='btn btn-primary tdata td'>Details ... </button>
+                                     <Td className='tdata td col-xl-auto'><Link>{val.patientId}</Link></Td>
+                                     <Td className='tdata td col-xl-auto'>{val.patientName}</Td>
+                                     <Td className='tdata  td'>{val.contactNumber}</Td>
+                                     <Td className='tdata  td'>{val.emailId}</Td>
+                                     <Td className='tdata  td'>
+                                         <ButtonToolbar className='tdata  td'>
+                                             <Link to={"/details/" + val.patientId } >
+                                                 <button type="submit" className='btn btn-primary tdata td'>Details ... </button>
 
-                                                </Link>
-                                            </ButtonToolbar>
+                                             </Link>
+                                         </ButtonToolbar>
 
-                                        </Td>
-                                        {(sessionStorage.getItem("userId") == 1) ?
-                                            <Td className='tdata  td'>
-                                                <ButtonToolbar className='tdata  td'>
-                                                    <Link to={"/appointment/" + val.idPatient} >
+                                     </Td>
+                                     {(sessionStorage.getItem("userId") == 1) ?
+                                         <Td className='tdata  td'>
+                                             <ButtonToolbar className='tdata  td'>
+                                                 <Link to={"/appointment/" + val.patientId} >
 
-                                                        <button type="success" className='btn btn-warning tdata td' >Book Appointment </button>
-                                                    </Link>
-                                                </ButtonToolbar>
+                                                     <button type="success" className='btn btn-warning tdata td' >Book Appointment </button>
+                                                 </Link>
+                                             </ButtonToolbar>
 
-                                            </Td>   
-                                            : null}
-                                    </Tr>
+                                         </Td>   
+                                         : null}
+                                 </Tr>
+                                    : null}
+                                   
                                 </Tbody>
 
                             )

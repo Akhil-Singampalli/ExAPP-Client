@@ -32,7 +32,7 @@ export default class DocAddPatDetails extends Component {
 
     componentDidMount() {
 
-        axios.get("http://localhost:8080/docAPI/patdata/1")
+        axios.get("https://exapp-database.uc.r.appspot.com/exult/docAPI/patdata/1")
             .then(response => this.setState({
 
                 patData: response.data,

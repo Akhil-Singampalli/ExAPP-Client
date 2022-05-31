@@ -159,7 +159,7 @@ export default class AdminAddPatsBulk extends Component {
         const data = new FormData() 
         data.append('file', this.state.file)
         console.warn(this.state.file);
-        let url = "http://localhost:8080/adminAPI/uploadFile";
+        let url = "https://exapp-database.uc.r.appspot.com/exult/adminAPI/uploadFile";
  
         axios.post(url, data, { // receive two parameter endpoint url ,form data 
         })

@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react";
 
 import useDrivePicker from "react-google-drive-picker";
 import axios from "axios";
-import * as FcIcons from "react-icons/fc"
+import * as FcIcons from "react-icons/fc";
+import { Button, Collapse } from 'react-bootstrap'
 
 const clientId =
   "229521899518-v2nb1anhnuj8n1rkqsi0qrpjojkl3l7r.apps.googleusercontent.com";
@@ -14,7 +15,7 @@ var SCOPES = "https://www.googleapis.com/auth/drive.file";
 
 
 
-export default function Drive({ parentCallback }) {
+export default function Drive({ parentFolder,parentCallback }) {
   const [openPicker, data, authRes] = useDrivePicker();
   // const [loaded, error] = useInjectScript();
   const [url, setUrl] = useState("");
@@ -76,6 +77,7 @@ export default function Drive({ parentCallback }) {
   }, [authRes]);
   // console.log("api picker", window.gapi.client);
   const open = () => {
+    console.log(parentFolder)
     openPicker({
       clientId,
       developerKey,
@@ -88,6 +90,7 @@ export default function Drive({ parentCallback }) {
       showUploadFolders: true,
       supportDrives: true,
       multiselect: true,
+      setParentFolder:parentFolder
     });
   };
 
@@ -106,7 +109,7 @@ export default function Drive({ parentCallback }) {
         const url = JSON.parse(res.body).webViewLink;
         setUrl(url);
         openUrl(url);
-        // console.log("is ress", JSON.parse(res.body));
+        console.log("is ress", JSON.parse(res.body));
       })
       .catch((err) => {
         console.log("is error", err);
@@ -198,20 +201,20 @@ export default function Drive({ parentCallback }) {
   
 
   return (
-    <div className="text-center col">
-      <div className="row">
+    <div className="">
+      
 
-      <button className="btn col-auto"  onClick={open}> <FcIcons.FcGoogle/>    <b>Upload</b></button>
-      <br />
-      <button className="btn col-auto" onClick={handleSignoutClick}><FcIcons.FcGoogle/>    <b>Sign out</b></button>
-      <br />
+      <Button className="btn"  onClick={open} style={{ width:'120px',height: '30px',paddingBlock:'3px'}}><FcIcons.FcGoogle size={"20px"}/><b> UPLOAD</b></Button>
+      
+      {/* <button className="btn col-auto" onClick={handleSignoutClick}><FcIcons.FcGoogle/>    <b>Sign out</b></button> */}
+      
       {/* <button onClick={listFileClick}>list files</button>
       <br /> */}
       {/* <button onClick={handleOpenLink} ref={openLinkButtonRef}>
         open link
       </button> */}
 
-      </div>
+      
       
     </div>
   );

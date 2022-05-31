@@ -75,6 +75,12 @@ export const MenuDataAdmin = [
         cName: "nav-text ",
     },
     {
+        title: 'Add Patient',
+        path: '/register',
+        icon:<AiIcons.AiOutlineReconciliation/>,
+        cName: "nav-text ",
+    },
+    {
         title: 'Calendar',
         path: '/cal',
         icon:<AiIcons.AiOutlineReconciliation/>,

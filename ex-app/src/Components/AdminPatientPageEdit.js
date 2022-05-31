@@ -31,9 +31,9 @@ export default class AdminPatientPageEdit extends Component {
         // this.state.patdata=PatientData;
 
 
-        var urlP = "http://localhost:8080/adminAPI/sampPatTempEdt";
+        var urlP = "http://localhost:8080/exult/adminAPI/sampPatTempEdt";
 
-        axios.get("http://localhost:8080/adminAPI/sampPatTempEdt")
+        axios.get("http://localhost:8080/exult/adminAPI/sampPatTempEdt")
             .then(response => this.setState({ patData: response.data, errorMessage: "", successMessage: "success" }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "No doctor exist" }) })
 
@@ -41,7 +41,7 @@ export default class AdminPatientPageEdit extends Component {
         console.log(this.state.patdata)
         console.log(this.data)
 
-        let urlD = "http://localhost:8080/docAPI/details";
+        let urlD = "http://localhost:8080/exult/docAPI/details";
         axios.get(urlD)
             .then(response => this.setState({ doctorsData: response.data }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "No doctor exist" }) })
@@ -49,7 +49,7 @@ export default class AdminPatientPageEdit extends Component {
 
 
     submitTemplate = () => {
-        axios.post('http://localhost:8080/adminAPI/patTempEdt', this.state.patdata)
+        axios.post('http://localhost:8080/exult/adminAPI/patTempEdt', this.state.patdata)
             .then(response => this.setState({
 
                 usersData: response.data,

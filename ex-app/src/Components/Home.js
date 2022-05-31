@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-ro
 
 import SimpleImageSlider from "react-simple-image-slider"
 import { gapi } from 'gapi-script'
-// import ApiCalendar from 'react-google-calendar-api'
+
 
 import { images } from "../utils/ImagesData";
 import axios from "axios";
-// import { start } from "@popperjs/core";
+
 import GDrive from "./GDrive";
 import DriveLogOut from "./DriveLogout";
 import DriveLogin from "./DriveLogin"
@@ -59,7 +59,7 @@ class Home extends Component {
                     {/* <GDrive /> */}
                     {/* <Drive /> */}
                     {/* <img src="https://drive.google.com/uc?export=view&id=1eG9rA3T74NG69AoZkNXSyfnoXvMpD9_K" alt="emo"></img> */}
-                    <button className="btn" onClick={this.sms} >Send</button>
+                    {/* <button className="btn" onClick={this.sms} >Send</button> */}
                    
                 </div>
             

@@ -29,7 +29,7 @@ class AdminPatientDetailsEdit extends Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8080/adminAPI/sampPatTempEdt")
+        axios.get("http://localhost:8080/exult/adminAPI/sampPatTempEdt")
             .then(response => this.setState({ patData: response.data }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "No doctor exist" }) })
 
@@ -54,7 +54,7 @@ class AdminPatientDetailsEdit extends Component {
     }
 
     submitTemplate = () => {
-        axios.post('http://localhost:8080/adminAPI/patTempEdt', this.state.patData)
+        axios.post('http://localhost:8080/exult/adminAPI/patTempEdt', this.state.patData)
             .then(response => this.setState({
                 successMessage: "Submit Successfull !!",
                 errorMessage: "",
