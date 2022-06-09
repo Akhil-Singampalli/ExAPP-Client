@@ -68,7 +68,7 @@ class Register extends Component {
         console.log(this.state.formvalue.confirmPassword);
         if (this.state.formvalue.password === this.state.formvalue.confirmPassword) {
 
-            axios.post("http://localhost:8080/exult/patientAPI/patientRegister", userData)
+            axios.post("https://exapp-server.herokuapp.com/exult/patientAPI/patientRegister", userData)
                 .then(response => this.setState({
 
                     usersData: response.data,

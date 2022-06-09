@@ -21,7 +21,7 @@ export default function CreateGoogleEvent (Id) {
 
     
 
-        let urlApt = "https://exapp-database.uc.r.appspot.com/exult/aptAPI/fetchApt/" + Id;
+        let urlApt = "https://exapp-server.herokuapp.com/exult/aptAPI/fetchApt/" + Id;
 
         axios.get(urlApt)
             .then(response =>   addEvent(response.data) )

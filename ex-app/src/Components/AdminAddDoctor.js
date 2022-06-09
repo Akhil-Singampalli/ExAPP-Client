@@ -57,7 +57,7 @@ class AdminAddDoctor extends Component {
         if (this.state.formvalue.password === this.state.formvalue.confirmPassword) {
 
             console.log(userData)
-            axios.post('https://exapp-database.uc.r.appspot.com/exult/adminAPI/docRegister', userData)
+            axios.post('https://exapp-server.herokuapp.com/exult/adminAPI/docRegister', userData)
                 .then(response => this.setState({
 
                     usersData: response.data,

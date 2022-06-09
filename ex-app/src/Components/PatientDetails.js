@@ -152,7 +152,7 @@ export default class PatientDetails extends Component {
     submitDetails = () => {
         const { data } = this.state;
 
-        const url = "http://localhost:8080/exult/docAPI/dataUpdate/113"
+        const url = "https://exapp-server.herokuapp.com/exult/docAPI/dataUpdate/113"
         axios.put(url, data)
             .then(response => this.setState({
                 successMessage: "Submit Successfull !!",
@@ -169,19 +169,19 @@ export default class PatientDetails extends Component {
 
 
     getDetails = () => {
-        var url = "http://localhost:8080/exult/patientAPI/patient/" + this.props.match.params.patientId;
+        var url = "https://exapp-server.herokuapp.com/exult/patientAPI/patient/" + this.props.match.params.patientId;
 
         axios.get(url)
             .then(response => this.setState({ pat: response.data, errorMessage: "", successMessage: "success" }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "Invalid Patient ID" }) })
 
-        var url = "http://localhost:8080/exult/patientAPI/patientData/" + this.props.match.params.patientId;
+        var url = "https://exapp-server.herokuapp.com/exult/patientAPI/patientData/" + this.props.match.params.patientId;
 
         axios.get(url)
             .then(response => this.setState({ data: response.data, errorMessage: "", successMessage: "success" }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "Invalid Patient ID" }) })
 
-        var url = "http://localhost:8080/exult/patientAPI/patientFolders/" + this.props.match.params.patientId;
+        var url = "https://exapp-server.herokuapp.com/exult/patientAPI/patientFolders/" + this.props.match.params.patientId;
 
         axios.get(url)
             .then(response => this.setState({ patData: response.data, errorMessage: "", successMessage: "success" }))

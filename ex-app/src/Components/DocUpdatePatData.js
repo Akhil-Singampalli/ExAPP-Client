@@ -39,7 +39,7 @@ class DocUpdatePatData extends Component {
     }
 
     getDetails = () => {
-        const url = "http://localhost:8080/exult/docAPI/patdata/1";
+        const url = "https://exapp-server.herokuapp.com/exult/docAPI/patdata/1";
         axios.get(url)
             .then(response => this.setState({ patData: response.data, patDataCopy: response.data, errorMessage: "", successMessage: "success" }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "No doctor exist" }) })
