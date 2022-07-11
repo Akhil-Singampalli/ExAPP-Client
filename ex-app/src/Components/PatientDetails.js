@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-
 import axios from 'axios';
 import { Button } from 'react-bootstrap'
 import Collapse from "react-bootstrap/Collapse";
@@ -344,12 +342,11 @@ export default class PatientDetails extends Component {
 
                         <h4 ><span style={{ fontWeight: 400, marginLeft: "0px" }}><b>Case Sheet  </b></span></h4>
                         <DocumentViewer
-                            url="https://docs.google.com/document/d/1cCUPT72X_GmpU40kxxuQ79B-4rxgnSPWXtnpu00q1Ns/edit?usp=sharing"
+                            url={this.state.patData.pres_data_id}
                             viewer="url"
                             style={{ width: "70%", height: "800px", borderRadius: "10px" }}
                         >
                         </DocumentViewer>
-
                     </div>
                     <br></br>
 

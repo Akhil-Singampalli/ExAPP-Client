@@ -13,8 +13,7 @@ import DriveLogOut from "./DriveLogout";
 import DriveLogin from "./DriveLogin"
 import Drive from "./Drive";
 import SMS from "./SMSnootificationManager";
-
-
+import { css } from "styled-components";
 
 
 class Home extends Component {
@@ -24,7 +23,7 @@ class Home extends Component {
         super(props);
         this.state = {
             fileObj: {
-                mobileNo :""
+                mobileNo: ""
             },
             accessToken: '',
 
@@ -36,11 +35,12 @@ class Home extends Component {
         SMS(this.state.fileObj);
     }
 
-    
+
     render() {
         return (
-            <div className="App-header">
+            
 
+            <div className="App-header">
 
                 <div className="card container-fluid" style={{ marginTop: "75px", width: "100%" }}>
                     <SimpleImageSlider
@@ -54,15 +54,18 @@ class Home extends Component {
                     />
 
                 </div>
+                
+               
                 <div>
                     {/* <DriveLogin /> <DriveLogOut/> */}
                     {/* <GDrive /> */}
                     {/* <Drive /> */}
                     {/* <img src="https://drive.google.com/uc?export=view&id=1eG9rA3T74NG69AoZkNXSyfnoXvMpD9_K" alt="emo"></img> */}
                     {/* <button className="btn" onClick={this.sms} >Send</button> */}
-                   
+
+
                 </div>
-            
+
 
             </div>
         )

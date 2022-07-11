@@ -30,6 +30,8 @@
 
     "axios": "^0.24.0",
 
+    "caniuse-lite": "^1.0.30001352",
+
     "gapi-script": "^1.2.0",
 
     "gh-pages": "^3.2.3",

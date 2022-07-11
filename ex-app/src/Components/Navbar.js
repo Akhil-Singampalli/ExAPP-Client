@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 
 
-import "../index.css";
+
+// import "../index.css";
 
 import "../css/css/menu.css";
+
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
@@ -17,7 +19,8 @@ import Appointment from "./Appointment";
 import AdminPatientPageEdit from "./AdminPatientPageEdit";
 import PatientDetails from "./PatientDetails";
 import DocUpdatePatData from "./DocUpdatePatData";
-
+import ContactUs from "./ContactUs";
+import Services from "./Services";
 import ViewAppointments from "./ViewAppointments";
 import AdminAddDoctor from "./AdminAddDoctor";
 import AdminAddPatsBulk from "./AdminAddPatsBulk";
@@ -84,7 +87,7 @@ class NavBar extends Component {
                 
                 {!this.state.logged_out ? <Redirect to="/" ></Redirect> : null }
 
-                    <nav className="navbar navbar-expand-md navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+                    <nav className="mainNav navbar navbar-expand-md navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
                         {this.state.logged_userId ? (
                             <button className="menu-bars" onClick={this.toggleSidebar}><ImIcons.ImMenu /></button>
                         ) : null}
@@ -97,11 +100,11 @@ class NavBar extends Component {
                                 <ul className="navbar-nav ml-auto col-auto" style={{padding:"0.2"}} >
                                     <li className="nav-item active cta "><Link className="nav-link" to="/">Home</Link></li>
                                     <li className="nav-item cta "><a href="about.html" className="nav-link">About</a></li>
-                                    <li className="nav-item cta "><a href="services.html" className="nav-link">Services</a></li>
+                                    <li className="nav-item cta "><Link  className="nav-link" to="/services/">Services</Link></li>
                                     <li className="nav-item cta "><a href="doctors.html" className="nav-link">Doctors</a></li>
                                     <li className="nav-item cta "><a href="blog.html" className="nav-link">Blog</a></li>
-                                    <li className="nav-item cta "><a href="contact.html" className="nav-link">Contact</a></li>
-                                    <li className="nav-item cta "><Link href="contact.html" className="nav-link" to="/appointment/">Book Appointment</Link></li>
+                                    <li className="nav-item cta "><Link  className="nav-link" to="/contactus/">Contact</Link></li>
+                                    <li className="nav-item cta "><Link  className="nav-link" to="/appointment/">Book Appointment</Link></li>
                                     
                                     {!this.state.logged_userId ? (
                                         <li className="nav-item cta"><Link className="nav-link" to="/Login"><b>Log In</b></Link></li>
@@ -211,6 +214,8 @@ class NavBar extends Component {
                             <Route path="/addDoc" component={AdminAddDoctor}></Route>
                             <Route path="/addPats" component={AdminAddPatsBulk}></Route>
                             <Route path="/cal" component={Calendar}></Route>
+                            <Route path="/contactus" component={ContactUs}></Route>
+                            <Route path="/services" component={Services}></Route>
                         </Switch>
 
                     </div>
