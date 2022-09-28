@@ -18,12 +18,13 @@
 }
 
 .nav-menu {
-    background-color: rgb(9, 74, 121);
+    background-color: rgb(17 61 68);
     width: 225px;
     padding: 0mm;
     justify-content: center;
     position: absolute;
-    top:0;
+    top: 1px;
+    border-radius: 1rem;
     transition: 850ms;
 }
 
@@ -31,7 +32,7 @@
     left:0;
     transition: 350ms;
     margin-top: 70px;
-    min-height: 110vh;
+    height: 112vh;
     padding: 0px;
 }
 

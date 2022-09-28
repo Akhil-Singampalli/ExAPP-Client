@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import axios from "axios";
 import "../index.css";
 import "../App.css";
+import {login_URL} from "../utils/URL";
 
 
 class Login extends Component {
@@ -44,7 +45,7 @@ class Login extends Component {
             contactNumber : this.state.formvalue.contactNumber,
             password : this.state.formvalue.password
         }
-        axios.post('https://exapp-server.herokuapp.com/exult/loginAPI/login',LoginForm)
+        axios.post(login_URL,LoginForm)
         .then(response => { this.setState({
  
             register: false,
@@ -60,6 +61,7 @@ class Login extends Component {
        
     }).catch(error=>{
             if(error.response) {
+                console.log(error.response)
                 this.setState({ errorMessage : error.response.data.message ,successMessage : "" });
             }else {
                 this.setState({ errorMessage : "Server is down", successMessage : ""});

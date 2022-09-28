@@ -7,6 +7,7 @@ import { Type, Field } from './models/FieldDetails';
 import { Table, Button, Popconfirm, Row, Col, Icon, Upload } from "antd";
 import * as AiIcons from "react-icons/ai";
 import axios from 'axios';
+import {patSampEdit_URL,patTempEdit_URL} from "../utils/URL";
 
 import { images } from "../utils/ImagesData";
 
@@ -29,7 +30,7 @@ class AdminPatientDetailsEdit extends Component {
     }
 
     componentDidMount() {
-        axios.get("https://exapp-server.herokuapp.com/exult/adminAPI/sampPatTempEdt")
+        axios.get(patSampEdit_URL)
             .then(response => this.setState({ patData: response.data }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "No doctor exist" }) })
 
@@ -54,7 +55,7 @@ class AdminPatientDetailsEdit extends Component {
     }
 
     submitTemplate = () => {
-        axios.post('https://exapp-server.herokuapp.com/exult/adminAPI/patTempEdt', this.state.patData)
+        axios.post(patTempEdit_URL, this.state.patData)
             .then(response => this.setState({
                 successMessage: "Submit Successfull !!",
                 errorMessage: "",

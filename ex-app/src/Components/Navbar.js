@@ -6,6 +6,7 @@ import React, { Component } from "react";
 
 import "../css/css/menu.css";
 
+
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
@@ -27,6 +28,7 @@ import AdminAddPatsBulk from "./AdminAddPatsBulk";
 import { Redirect } from "react-router-dom";
 import AdminPatientDetailsEdit from "./AdminPatientDetailsEdit";
 import Calendar from "./Calendar";
+import "../utils/URL";
 
 
 
@@ -94,7 +96,8 @@ class NavBar extends Component {
 
                         <div className="container-fluid">
 
-                            <a className="navbar-brand" href="/" style={{marginLeft:"80px"}}><b>e</b>-xult</a>
+                            <a className="navbar-brand" href="/" style={{marginLeft:"80px"}}><img src="/ExultLogo.png" width="130" height="60"></img></a>
+                           
 
                             <div className="collapse navbar-collapse" id="ftco-nav">
                                 <ul className="navbar-nav ml-auto col-auto" style={{padding:"0.2"}} >
@@ -104,7 +107,9 @@ class NavBar extends Component {
                                     <li className="nav-item cta "><a href="doctors.html" className="nav-link">Doctors</a></li>
                                     <li className="nav-item cta "><a href="blog.html" className="nav-link">Blog</a></li>
                                     <li className="nav-item cta "><Link  className="nav-link" to="/contactus/">Contact</Link></li>
+                                    {sessionStorage.getItem("userId") >= 1000 ? 
                                     <li className="nav-item cta "><Link  className="nav-link" to="/appointment/">Book Appointment</Link></li>
+                                    : null}
                                     
                                     {!this.state.logged_userId ? (
                                         <li className="nav-item cta"><Link className="nav-link" to="/Login"><b>Log In</b></Link></li>

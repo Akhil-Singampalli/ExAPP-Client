@@ -62,7 +62,7 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff; }
+  background-color: #087789; }
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -3480,6 +3480,7 @@ input[type="button"].btn-block {
   -ms-flex-direction: column;
   flex-direction: column;
   padding-left: 0;
+  gap:1rem;
   margin-bottom: 0;
   list-style: none; }
   .navbar-nav .nav-link {
@@ -3790,7 +3791,7 @@ input[type="button"].btn-block {
   -ms-flex-direction: column;
   flex-direction: column;
   min-width: 0;
-  margin-top: 80px;
+  margin-top: 13rem;
   width: fit-content;
   height: fit-content;
   word-wrap: break-word;
@@ -7476,7 +7477,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 body {
   font-family: "Open Sans", Arial, sans-serif;
-  background: #fff;
+  background: #087789;
   font-size: 15px;
   line-height: 1.8;
   font-weight: 400;
@@ -7507,7 +7508,7 @@ h1, h2, h3, h4, h5,
   color: #2f89fc !important; }
 
 .ftco-navbar-light {
-  background: rgba(0, 80, 180, 0.5)!important;
+  background: rgb(17 61 68 / 95%)!important;
   position: absolute;
   height: 60px;
   top: 10px;

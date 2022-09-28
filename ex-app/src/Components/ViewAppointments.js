@@ -10,9 +10,8 @@ import { PatDetails } from './PatientData';
 import Calendar from './Calendar';
 import moment from "moment";
 import CreateGoogleEvent from './CreateEvent';
-
-
-
+import {getAllApts_URL,docDetails_URL,editApt_URL,cancelApt_URL, confirmApt_URL} from "../utils/URL";
+import UpdateGoogleEvent from './UpdateEvent';
 
 
 export default class ViewAppointments extends Component {
@@ -54,12 +53,12 @@ export default class ViewAppointments extends Component {
     }
 
     getDetails = () => {
-        let url = "https://exapp-server.herokuapp.com/exult/aptAPI/getApt/" + this.props.match.params.userId
+        let url = getAllApts_URL + this.props.match.params.userId
         axios.get(url)
             .then(response => this.setState({ aptData: response.data, errorMessage: "", successMessage: "success" }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "No doctor exist" }) })
 
-        let urlDoctor = "https://exapp-server.herokuapp.com/exult/docAPI/details";
+        let urlDoctor = docDetails_URL;
 
         axios.get(urlDoctor)
             .then(response => this.setState({ doctorsData: response.data }))
@@ -68,7 +67,7 @@ export default class ViewAppointments extends Component {
 
 
         if (sessionStorage.getItem("userId") == 1) {
-            let url = "https://exapp-server.herokuapp.com/exult/aptAPI/getApts"
+            let url = getAllApts_URL
             axios.get(url)
                 .then(response => this.setState({ aptData: response.data, errorMessage: "", successMessage: "success" }))
                 .catch(error => { if (error.response) this.setState({ errorMessage: "No doctor exist" }) })
@@ -93,7 +92,7 @@ export default class ViewAppointments extends Component {
 
             console.log(aptData);
 
-            axios.post('https://exapp-server.herokuapp.com/exult/aptAPI/editApt/' + this.state.formvalue.aptId, aptData)
+            axios.put( editApt_URL + this.state.formvalue.aptId, aptData)
                 .then(response => this.setState({
 
                     successMessage: "Appointment Request Submitted Successfull !!",
@@ -107,7 +106,7 @@ export default class ViewAppointments extends Component {
                     }
                 });
         }
-        window.location.reload(true)
+        // window.location.reload(true)
     }
 
     handleSubmit = event => {
@@ -159,6 +158,8 @@ export default class ViewAppointments extends Component {
     }
 
     handleAptUpdate = (event) => {
+
+        
         const value = event.target.value;
         const name = event.target.name;
         const { formvalue } = this.state;
@@ -173,13 +174,14 @@ export default class ViewAppointments extends Component {
         }
 
         console.log(this.state.formvalue)
-
-        this.handleShowAptEdit()
+        
+        UpdateGoogleEvent(this.state.aptData)
+        this.handleCloseAptEdit()
     }
     handleAptCancel = (event) => {
         console.log(event.target.value)
-        let url = "https://exapp-server.herokuapp.com/exult/aptAPI/cancelApt/" + event.target.value
-        axios.post(url)
+        let url = cancelApt_URL + event.target.value
+        axios.put(url)
             .then(response => this.setState({
 
                 successMessage: "Canceled Successfully !!",
@@ -193,22 +195,25 @@ export default class ViewAppointments extends Component {
                     this.setState({ errorMessage: "Server is down", successMessage: "" });
                 }
             });
-        window.location.reload(true)
+        // window.location.reload(true)
     }
 
 
 
     handleAddApointment = (event) => {
         console.log(event.target.value)
+        CreateGoogleEvent(event.target.value);
+    }
 
-        CreateGoogleEvent(event.target.value)
-
-        let url = "https://exapp-server.herokuapp.com/exult/aptAPI/confirmApt/" + event.target.value
+    handleAptConfirm = (event,appointmentEventId) => {
+        console.log(event.target.value)
+        let url = confirmApt_URL + event.target.value
         axios.put(url)
             .then(response => this.setState({
-
                 successMessage: "Confirmed Successfully !!",
                 errorMessage: "",
+            }, () => {
+                this.getDetails()
             })).catch(error => {
                 if (error.response) {
                     this.setState({ errorMessage: error.response.data.message, successMessage: "" });
@@ -216,7 +221,6 @@ export default class ViewAppointments extends Component {
                     this.setState({ errorMessage: "Server is down", successMessage: "" });
                 }
             });
-
         // window.location.reload(true)
     }
 
@@ -282,7 +286,7 @@ export default class ViewAppointments extends Component {
                                                         <div className='form form-group text-center'><h6><b>Status : </b> {val.aptStatus}</h6></div>
 
 
-                                                        {val.aptStatus != "Confirm" ?
+                                                        {val.aptStatus === "Pending" ?
 
                                                             <>
                                                                 {sessionStorage.getItem("userId") < 10 && sessionStorage.getItem("userId") != 1 ?
@@ -350,11 +354,7 @@ export default class ViewAppointments extends Component {
                             <div className='' style={{ backgroundColor: "#0000 ", padding: "0.5rem" }}>
 
                                 <React.Fragment>
-
-
                                     <div className="form-control" >
-
-
                                         <div className="form-group">
                                             <div className="select-wrap ">
                                                 <div className='row'>
@@ -376,7 +376,7 @@ export default class ViewAppointments extends Component {
                                                 <Calendar timeCallback={this.handleCallback} doc={this.state.doctorMail} pat={this.state.patientMail} />
 
                                                 <div className="form-group">
-                                                    <button type="submit" value="" className="btn btn-primary" onClick={this.handleSubmit}><b>Book Appointment</b></button>
+                                                    {/* <button type="submit" value="" className="btn btn-primary" onClick={this.handleSubmit}><b>Book Appointment</b></button> */}
 
                                                     <h6 type="text" className="alert-info" >{this.state.errorMessage}</h6>
                                                     <h6 type="text" className="alert-success" >{this.state.successMessage}</h6>

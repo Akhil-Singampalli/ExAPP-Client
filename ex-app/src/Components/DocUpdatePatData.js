@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { FaArrowAltCircleDown, FaArrowDown, FaCartArrowDown, FaDocker, FaSearch, FaSortDown } from 'react-icons/fa';
 
 import { Button, ButtonToolbar } from 'react-bootstrap';
+import { docpatData_URL} from "../utils/URL";
 
 
 
@@ -39,7 +40,7 @@ class DocUpdatePatData extends Component {
     }
 
     getDetails = () => {
-        const url = "https://exapp-server.herokuapp.com/exult/docAPI/patdata/1";
+        const url = docpatData_URL;
         axios.get(url)
             .then(response => this.setState({ patData: response.data, patDataCopy: response.data, errorMessage: "", successMessage: "success" }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "No doctor exist" }) })

@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { User } from "./models/User";
+import {patRegister_URL} from "../utils/URL";
 
 class Register extends Component {
     constructor(props) {
@@ -68,7 +69,7 @@ class Register extends Component {
         console.log(this.state.formvalue.confirmPassword);
         if (this.state.formvalue.password === this.state.formvalue.confirmPassword) {
 
-            axios.post("https://exapp-server.herokuapp.com/exult/patientAPI/patientRegister", userData)
+            axios.post(patRegister_URL, userData)
                 .then(response => this.setState({
 
                     usersData: response.data,
@@ -218,7 +219,7 @@ class Register extends Component {
                 
                 <div >
                     <br></br>
-                    <div className='card container-fluid' style={{ marginTop: "70px" }}>
+                    <div className='card container-fluid'>
                         <form className="form-control">
                         
                                     <h1 className="text-center card-header"><h3><b>Patient Registration</b></h3></h1>

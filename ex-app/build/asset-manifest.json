@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/static/css/main.099cc1dc.chunk.css",
+    "main.js": "/static/js/main.c40db164.chunk.js",
+    "main.js.map": "/static/js/main.c40db164.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.6f6ac7ac.js",
+    "runtime-main.js.map": "/static/js/runtime-main.6f6ac7ac.js.map",
+    "static/css/2.5f2c22c6.chunk.css": "/static/css/2.5f2c22c6.chunk.css",
+    "static/js/2.3a638e11.chunk.js": "/static/js/2.3a638e11.chunk.js",
+    "static/js/2.3a638e11.chunk.js.map": "/static/js/2.3a638e11.chunk.js.map",
+    "static/js/3.3a5ecde3.chunk.js": "/static/js/3.3a5ecde3.chunk.js",
+    "static/js/3.3a5ecde3.chunk.js.map": "/static/js/3.3a5ecde3.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.5f2c22c6.chunk.css.map": "/static/css/2.5f2c22c6.chunk.css.map",
+    "static/css/main.099cc1dc.chunk.css.map": "/static/css/main.099cc1dc.chunk.css.map",
+    "static/js/2.3a638e11.chunk.js.LICENSE.txt": "/static/js/2.3a638e11.chunk.js.LICENSE.txt",
+    "static/media/1.7202ad83.jpg": "/static/media/1.7202ad83.jpg",
+    "static/media/2.89b0491b.jpg": "/static/media/2.89b0491b.jpg",
+    "static/media/3.f841c949.jpg": "/static/media/3.f841c949.jpg",
+    "static/media/4.2b1e9d92.jpg": "/static/media/4.2b1e9d92.jpg",
+    "static/media/5.572c6d8d.jpg": "/static/media/5.572c6d8d.jpg",
+    "static/media/flaticon.css": "/static/media/Flaticon.ba30a557.svg",
+    "static/media/body.309285e5.jpg": "/static/media/body.309285e5.jpg",
+    "static/media/face.fa85b3b5.jpg": "/static/media/face.fa85b3b5.jpg",
+    "static/media/hair.2f33fd67.jpg": "/static/media/hair.2f33fd67.jpg",
+    "static/media/icomoon.css": "/static/media/icomoon.f76c54c1.eot",
+    "static/media/ionicons.min.css": "/static/media/ionicons.d4df1d7d.ttf",
+    "static/media/laser.4fce08cd.jpg": "/static/media/laser.4fce08cd.jpg",
+    "static/media/logo.6ce24c58.svg": "/static/media/logo.6ce24c58.svg",
+    "static/media/open-iconic-bootstrap.min.css": "/static/media/open-iconic.bff1e040.otf",
+    "static/media/skin.aa0d3bfb.jpg": "/static/media/skin.aa0d3bfb.jpg",
+    "static/media/surgeries.827fb8ac.jpg": "/static/media/surgeries.827fb8ac.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6f6ac7ac.js",
+    "static/css/2.5f2c22c6.chunk.css",
+    "static/js/2.3a638e11.chunk.js",
+    "static/css/main.099cc1dc.chunk.css",
+    "static/js/main.c40db164.chunk.js"
+  ]
+}

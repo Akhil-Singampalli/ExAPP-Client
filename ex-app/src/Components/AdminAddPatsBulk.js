@@ -4,6 +4,7 @@ import { ExcelRenderer } from "react-excel-renderer";
 import { EditableFormRow, EditableCell } from "../utils/edittable";
 import * as AiIcons from "react-icons/ai";
 import axios from "axios";
+import { excelupload_URL} from "../utils/URL";
 
 export default class AdminAddPatsBulk extends Component {
 
@@ -159,7 +160,7 @@ export default class AdminAddPatsBulk extends Component {
         const data = new FormData() 
         data.append('file', this.state.file)
         console.warn(this.state.file);
-        let url = "https://exapp-server.herokuapp.com/exult/adminAPI/uploadFile";
+        let url = excelupload_URL;
  
         axios.post(url, data, { // receive two parameter endpoint url ,form data 
         })

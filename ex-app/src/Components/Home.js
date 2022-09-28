@@ -7,10 +7,9 @@ import { gapi } from 'gapi-script'
 
 import { images } from "../utils/ImagesData";
 import axios from "axios";
-
+import "../utils/URL";
 import GDrive from "./GDrive";
-import DriveLogOut from "./DriveLogout";
-import DriveLogin from "./DriveLogin"
+
 import Drive from "./Drive";
 import SMS from "./SMSnootificationManager";
 import { css } from "styled-components";

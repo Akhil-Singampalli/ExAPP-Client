@@ -12,6 +12,7 @@ import Upload from './GDrive';
 import GoogleDocsViewer from 'react-google-docs-viewer';
 import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 import { DocumentViewer } from 'react-documents';
+import {patDataUpdate_URL,patPatientId_URL,patPatData_URL,patFolders_URL} from "../utils/URL";
 const docs = [
     { uri: "https://docs.google.com/document/d/1cCUPT72X_GmpU40kxxuQ79B-4rxgnSPWXtnpu00q1Ns/edit?usp=sharing" }
     // Local File
@@ -150,7 +151,7 @@ export default class PatientDetails extends Component {
     submitDetails = () => {
         const { data } = this.state;
 
-        const url = "https://exapp-server.herokuapp.com/exult/docAPI/dataUpdate/113"
+        const url = patDataUpdate_URL + this.props.match.params.patientId;
         axios.put(url, data)
             .then(response => this.setState({
                 successMessage: "Submit Successfull !!",
@@ -167,19 +168,19 @@ export default class PatientDetails extends Component {
 
 
     getDetails = () => {
-        var url = "https://exapp-server.herokuapp.com/exult/patientAPI/patient/" + this.props.match.params.patientId;
+        var url = patPatientId_URL + this.props.match.params.patientId;
 
         axios.get(url)
             .then(response => this.setState({ pat: response.data, errorMessage: "", successMessage: "success" }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "Invalid Patient ID" }) })
 
-        var url = "https://exapp-server.herokuapp.com/exult/patientAPI/patientData/" + this.props.match.params.patientId;
+        var url = patPatData_URL + this.props.match.params.patientId;
 
         axios.get(url)
             .then(response => this.setState({ data: response.data, errorMessage: "", successMessage: "success" }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "Invalid Patient ID" }) })
 
-        var url = "https://exapp-server.herokuapp.com/exult/patientAPI/patientFolders/" + this.props.match.params.patientId;
+        var url = patFolders_URL + this.props.match.params.patientId;
 
         axios.get(url)
             .then(response => this.setState({ patData: response.data, errorMessage: "", successMessage: "success" }))

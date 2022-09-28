@@ -5,6 +5,7 @@ import axios from "axios";
 import "../index.css";
 import "../App.css";
 import { Link } from "react-router-dom";
+import {docRegister_URL} from '../utils/URL'
 
 
 class AdminAddDoctor extends Component {
@@ -57,7 +58,7 @@ class AdminAddDoctor extends Component {
         if (this.state.formvalue.password === this.state.formvalue.confirmPassword) {
 
             console.log(userData)
-            axios.post('https://exapp-server.herokuapp.com/exult/adminAPI/docRegister', userData)
+            axios.post(docRegister_URL, userData)
                 .then(response => this.setState({
 
                     usersData: response.data,

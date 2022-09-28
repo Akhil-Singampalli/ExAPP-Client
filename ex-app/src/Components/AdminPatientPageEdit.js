@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Modal, ModalDialog } from 'react-bootstrap';
 
 import { Type, Field } from './models/FieldDetails';
+import { patSampEdit_URL,patTempEdit_URL,docDetails_URL} from "../utils/URL";
 
 
 
@@ -31,9 +32,9 @@ export default class AdminPatientPageEdit extends Component {
         // this.state.patdata=PatientData;
 
 
-        var urlP = "https://exapp-server.herokuapp.com/adminAPI/sampPatTempEdt";
+        // var urlP = "https://exapp-server.herokuapp.com/adminAPI/sampPatTempEdt";
 
-        axios.get("https://exapp-server.herokuapp.com/adminAPI/sampPatTempEdt")
+        axios.get(patSampEdit_URL)
             .then(response => this.setState({ patData: response.data, errorMessage: "", successMessage: "success" }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "No doctor exist" }) })
 
@@ -41,7 +42,7 @@ export default class AdminPatientPageEdit extends Component {
         console.log(this.state.patdata)
         console.log(this.data)
 
-        let urlD = "https://exapp-server.herokuapp.com/exult/docAPI/details";
+        let urlD = docDetails_URL;
         axios.get(urlD)
             .then(response => this.setState({ doctorsData: response.data }))
             .catch(error => { if (error.response) this.setState({ errorMessage: "No doctor exist" }) })
@@ -49,7 +50,7 @@ export default class AdminPatientPageEdit extends Component {
 
 
     submitTemplate = () => {
-        axios.post('https://exapp-server.herokuapp.com/exult/adminAPI/patTempEdt', this.state.patdata)
+        axios.post(patTempEdit_URL, this.state.patdata)
             .then(response => this.setState({
 
                 usersData: response.data,
